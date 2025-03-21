@@ -289,7 +289,7 @@ const OurAIStoryPage: React.FC = () => {
                 <div className="mt-6">
                   <a
                     href={storyData.cta.buttonLink}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#bb141a] hover:bg-[#ea5830] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb141a] transition-colors"
+                    className="inline-flex items-center px-6 py-3 border border-[#2a8735] text-base font-medium rounded-md shadow-sm text-[#2a8735] bg-transparent hover:bg-[#f8f8f8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2a8735] transition-colors"
                   >
                     {storyData.cta.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
