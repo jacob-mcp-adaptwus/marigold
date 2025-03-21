@@ -26,7 +26,7 @@ const storyData = {
   // Vision callout
   visionCallout: {
     title: "The Marigold Vision",
-    quote: "We don't just use AI—we live it. Every process, every client interaction, every campaign we run is enhanced by artificial intelligence. This isn't about replacing humans, it's about empowering them.",
+    quote: "We believe growth is a result of the right environment, nurturing support, and intentional strategy. At Marigold ONE11, we don't just build marketing plans—we cultivate ecosystems.",
     attribution: "— Founder & CEO"
   },
   
