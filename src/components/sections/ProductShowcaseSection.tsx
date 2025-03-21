@@ -60,10 +60,10 @@ const ProductShowcaseSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#2a2b2a]">
-            Featured <span className="text-[#bb141a]">Products</span>
+            AI-Powered <span className="text-[#bb141a]">Bundles</span> for Business Growth
           </h2>
           <p className="text-[#2a2b2a] max-w-3xl mx-auto text-lg md:text-xl">
-            Discover our innovative solutions designed to elevate your business performance
+            Discover our expertly bundled services designed to simplify your marketing, automation, and AI strategy. Each package is crafted to maximize efficiency, streamline workflows, and drive real results—all at a transparent price.
           </p>
         </div>
         

@@ -2,6 +2,28 @@ import React from 'react';
 import CaseStudyCard from '../ui/CaseStudyCard';
 import Button from '../ui/Button';
 
+// Helper function to format DAIsy text with colors
+const ColoredDaisy = () => (
+  <>
+    <span className="text-[#2a8735]">D</span>
+    <span className="text-[#f59d40]">AI</span>
+    <span className="text-[#2a8735]">sy</span>
+  </>
+);
+
+// Helper function to process descriptions that might contain dAisy
+const formatWithDaisy = (text: string) => {
+  if (text.includes('dAisy')) {
+    const parts = text.split('dAisy');
+    return (
+      <>
+        {parts[0]}<ColoredDaisy />{parts[1]}
+      </>
+    );
+  }
+  return text;
+};
+
 const CaseStudiesSection: React.FC = () => {
   const caseStudies = [
     {
@@ -41,7 +63,7 @@ const CaseStudiesSection: React.FC = () => {
               key={index}
               title={study.title}
               company={study.company}
-              description={study.description}
+              description={formatWithDaisy(study.description)}
               metrics={study.metrics}
             />
           ))}
@@ -52,6 +74,7 @@ const CaseStudiesSection: React.FC = () => {
             variant="primary"
             size="md"
             withArrow
+            href="/case-studies"
           >
             View All Case Studies
           </Button>

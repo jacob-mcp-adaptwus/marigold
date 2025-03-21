@@ -4,13 +4,13 @@ import StatCard from '../ui/StatCard';
 
 const HeroSection: React.FC = () => {
   const stats = [
-    { number: '200+', label: 'Businesses Transformed' },
-    { number: '45%', label: 'Average Growth Rate' },
-    { number: '3.5x', label: 'ROI Improvement' }
+    { number: '50+', label: 'Custom AI Integrations' },
+    { number: '75%', label: 'Marketing Task Automation' },
+    { number: '1.5x', label: 'ROI Improvement' }
   ];
 
   return (
-    <section className="min-h-[85vh] pt-20 relative overflow-hidden bg-gradient-to-br from-[#3a3b3a] via-[#424342] to-[#3a3b3a]">
+    <section className="min-h-[85vh] pt-20 relative overflow-hidden bg-gradient-to-br from-[#626262] via-[#5a5a5a] to-[#626262]">
       {/* Background Elements - Made More Subtle and Blurred */}
       <div className="absolute top-0 right-0 w-full h-full overflow-hidden filter blur-[2px]">
         {/* Digital Marigold Element - Much more subtle */}
@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
             {[...Array(12)].map((_, i) => (
               <div 
                 key={i}
-                className="absolute w-52 h-52 bg-gradient-to-r from-[#f59d40] to-[#ea5830] rounded-tr-full rounded-bl-full opacity-[0.05]"
+                className="absolute w-52 h-52 bg-gradient-to-r from-[#f59d40] to-[#ea5830] rounded-tr-full rounded-bl-full opacity-[0.15]"
                 style={styles.marigoldPetal(i)}
               ></div>
             ))}
@@ -31,17 +31,35 @@ const HeroSection: React.FC = () => {
         <div className="absolute right-0 top-1/4 w-1/2 h-2/3">
           {/* Digital Circuit Lines - Subtle but visible */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/2 right-1/3 w-32 h-1 bg-[#f59d40] opacity-[0.07] transform rotate-45"></div>
-            <div className="absolute top-1/3 right-1/2 w-40 h-1 bg-[#f59d40] opacity-[0.05] transform rotate-30"></div>
-            <div className="absolute top-2/3 right-1/4 w-28 h-1 bg-[#f59d40] opacity-[0.07] transform -rotate-20"></div>
-            <div className="absolute top-1/4 right-1/3 w-24 h-1 bg-[#f59d40] opacity-[0.07] transform rotate-75"></div>
+            <div className="absolute top-1/2 right-1/3 w-32 h-1 bg-[#f59d40] opacity-[0.17] transform rotate-45"></div>
+            <div className="absolute top-1/3 right-1/2 w-40 h-1 bg-[#f59d40] opacity-[0.15] transform rotate-30"></div>
+            <div className="absolute top-2/3 right-1/4 w-28 h-1 bg-[#f59d40] opacity-[0.17] transform -rotate-20"></div>
+            <div className="absolute top-1/4 right-1/3 w-24 h-1 bg-[#f59d40] opacity-[0.17] transform rotate-75"></div>
           </div>
           
           {/* Digital Connection Points - Subtle but visible */}
-          <div className="absolute top-1/2 right-1/3 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.07] shadow-none"></div>
-          <div className="absolute top-1/3 right-1/2 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.05] shadow-none"></div>
-          <div className="absolute top-2/3 right-1/4 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.07] shadow-none"></div>
-          <div className="absolute top-1/4 right-1/3 w-3 h-3 rounded-full bg-[#f59d40] opacity-[0.07] shadow-none"></div>
+          <div className="absolute top-1/2 right-1/3 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.17] shadow-none"></div>
+          <div className="absolute top-1/3 right-1/2 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.15] shadow-none"></div>
+          <div className="absolute top-2/3 right-1/4 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.17] shadow-none"></div>
+          <div className="absolute top-1/4 right-1/3 w-3 h-3 rounded-full bg-[#f59d40] opacity-[0.17] shadow-none"></div>
+        </div>
+        
+        {/* Connecting lines from flower to right side - NEW */}
+        <div className="absolute inset-0">
+          {/* Middle connecting lines */}
+          <div className="absolute top-1/2 left-1/4 w-64 h-1 bg-[#f59d40] opacity-[0.15] transform rotate-5"></div>
+          <div className="absolute top-[45%] left-1/3 w-72 h-1 bg-[#f59d40] opacity-[0.17] transform rotate-2"></div>
+          <div className="absolute top-[55%] left-1/5 w-56 h-1 bg-[#f59d40] opacity-[0.15] transform -rotate-3"></div>
+          
+          {/* Bottom connecting lines */}
+          <div className="absolute top-3/4 left-1/4 w-80 h-1 bg-[#f59d40] opacity-[0.17] transform rotate-10"></div>
+          <div className="absolute top-[80%] left-1/3 w-96 h-1 bg-[#f59d40] opacity-[0.15] transform -rotate-5"></div>
+          
+          {/* Connection nodes */}
+          <div className="absolute top-1/2 left-1/4 w-3 h-3 rounded-full bg-[#f59d40] opacity-[0.15] shadow-none"></div>
+          <div className="absolute top-[45%] left-1/3 w-3 h-3 rounded-full bg-[#f59d40] opacity-[0.17] shadow-none"></div>
+          <div className="absolute top-3/4 left-1/4 w-4 h-4 rounded-full bg-[#f59d40] opacity-[0.15] shadow-none"></div>
+          <div className="absolute top-[80%] left-1/3 w-3 h-3 rounded-full bg-[#f59d40] opacity-[0.17] shadow-none"></div>
         </div>
         
         {/* Small digital dots scattered - Almost invisible */}
@@ -56,7 +74,7 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Binary code pattern overlay - Almost invisible */}
-        <div className="absolute right-10 top-1/3 opacity-[0.02] text-[#f59d40] font-mono text-[10px]">
+        <div className="absolute right-10 top-1/3 opacity-[0.12] text-[#f59d40] font-mono text-[10px]">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="mb-1">
               {[...Array(10)].map((_, j) => (
@@ -67,17 +85,17 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Subtle binary/digital pattern - Almost invisible */}
-        <div className="absolute inset-0 opacity-[0.01]" style={styles.binaryPattern}></div>
+        <div className="absolute inset-0 opacity-[0.11]" style={styles.binaryPattern}></div>
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 md:pt-16 pb-16">
         <div className="max-w-5xl mx-auto text-center mb-6">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight whitespace-nowrap">
-            <span className="inline text-white relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">Plant the Seed.</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 leading-tight">
+            <span className="inline text-[#ffffff] relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">Plant the Seed.</span><br />
             <span className="inline text-[#f59d40]"> Watch Success Grow.</span>
           </h1>
-          <h2 className="text-xl md:text-2xl font-semibold text-[#ddd9d9] mb-6 md:mb-8">
-            Marigold ONE11 Provides Expert Consulting, AI Marketing<br />
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#f0f0f0] mb-6 md:mb-8">
+            Marigold ONE11 Provides Expert Consulting, AI Marketing<br className="hidden sm:inline" />
             and Digital Tools To Help You Achieve More With Less Effort
           </h2>
           

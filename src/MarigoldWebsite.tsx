@@ -6,7 +6,6 @@ import AISolutionsSection from './components/sections/AISolutionsSection';
 import ProductShowcaseSection from './components/sections/ProductShowcaseSection';
 import TestimonialsSection from './components/sections/TestimonialsSection';
 import TrainingSection from './components/sections/TrainingSection';
-import CTASection from './components/sections/CTASection';
 
 const MarigoldWebsite: React.FC = () => {
   return (
@@ -17,7 +16,6 @@ const MarigoldWebsite: React.FC = () => {
       <ProductShowcaseSection />
       <TestimonialsSection />
       <TrainingSection />
-      <CTASection />
     </Layout>
   );
 };

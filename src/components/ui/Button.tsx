@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 interface ButtonProps {
@@ -20,6 +20,34 @@ const Button: React.FC<ButtonProps> = ({
   withArrow = false,
   onClick,
 }) => {
+  // Add wiggle animation styles to the document head
+  useEffect(() => {
+    // Check if the animation styles are already added
+    if (!document.getElementById('wiggle-animation-styles')) {
+      const styleElement = document.createElement('style');
+      styleElement.id = 'wiggle-animation-styles';
+      styleElement.textContent = `
+        @keyframes wiggle {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(2px); }
+          75% { transform: translateX(-2px); }
+        }
+        .animate-wiggle {
+          animation: wiggle 1s ease-in-out infinite;
+        }
+      `;
+      document.head.appendChild(styleElement);
+    }
+    
+    // Cleanup function to remove the styles when all Button components are unmounted
+    return () => {
+      const existingStyleElement = document.getElementById('wiggle-animation-styles');
+      if (existingStyleElement && document.querySelectorAll('[data-button-component]').length === 1) {
+        existingStyleElement.remove();
+      }
+    };
+  }, []);
+
   const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors duration-200 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500';
   
   const variantClasses = {
@@ -41,21 +69,21 @@ const Button: React.FC<ButtonProps> = ({
     <>
       {children}
       {withArrow && (
-        <ArrowRight className="ml-2 h-4 w-4" />
+        <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" />
       )}
     </>
   );
   
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} data-button-component>
         {content}
       </a>
     );
   }
   
   return (
-    <button className={classes} onClick={onClick}>
+    <button className={classes} onClick={onClick} data-button-component>
       {content}
     </button>
   );

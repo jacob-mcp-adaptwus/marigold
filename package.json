@@ -24,7 +24,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "bash deploy.sh",
+    "deploy:dev": "NODE_ENV=dev npm run deploy",
+    "deploy:staging": "NODE_ENV=staging npm run deploy",
+    "deploy:prod": "NODE_ENV=prod npm run deploy"
   },
   "eslintConfig": {
     "extends": [

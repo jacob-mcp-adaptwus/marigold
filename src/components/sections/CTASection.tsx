@@ -16,8 +16,9 @@ const CTASection: React.FC = () => {
             variant="white"
             size="lg"
             withArrow
+            href="/contact"
           >
-            Get Started
+            Take the First Step
           </Button>
         </div>
       </div>

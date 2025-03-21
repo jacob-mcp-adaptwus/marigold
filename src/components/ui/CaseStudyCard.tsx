@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 interface CaseStudyCardProps {
   title: string;
   company: string;
-  description: string;
+  description: ReactNode;
   metrics: string[];
+  link?: string;
 }
 
 const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
@@ -13,6 +14,7 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
   company,
   description,
   metrics,
+  link = '#',
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
@@ -36,10 +38,10 @@ const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
           </ul>
         </div>
         
-        <button className="flex items-center text-amber-600 font-medium hover:text-amber-700 transition-colors duration-200">
+        <a href={link} className="flex items-center text-amber-600 font-medium hover:text-amber-700 transition-colors duration-200">
           Read case study
           <ArrowRight className="ml-1 h-4 w-4" />
-        </button>
+        </a>
       </div>
     </div>
   );

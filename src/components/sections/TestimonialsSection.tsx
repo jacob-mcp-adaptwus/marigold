@@ -1,6 +1,28 @@
 import React from 'react';
 import TestimonialCard from '../ui/TestimonialCard';
 
+// Helper function to format DAIsy text with colors
+const ColoredDaisy = () => (
+  <>
+    <span className="text-[#2a8735]">D</span>
+    <span className="text-[#f59d40]">AI</span>
+    <span className="text-[#2a8735]">sy</span>
+  </>
+);
+
+// Helper function to process quotes that might contain dAisy
+const formatQuoteWithDaisy = (quote: string) => {
+  if (quote.includes('dAisy')) {
+    const parts = quote.split('dAisy');
+    return (
+      <>
+        {parts[0]}<ColoredDaisy />{parts[1]}
+      </>
+    );
+  }
+  return quote;
+};
+
 const TestimonialsSection: React.FC = () => {
   const testimonials = [
     {
@@ -101,9 +123,10 @@ const TestimonialsSection: React.FC = () => {
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
               key={index}
-              quote={testimonial.quote}
+              quote={formatQuoteWithDaisy(testimonial.quote)}
               author={testimonial.author}
               role={testimonial.role}
+              variant={index === 1 ? "highlight" : "default"}
             />
           ))}
         </div>

@@ -213,8 +213,7 @@ const TrainingPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold text-[#2a2b2a] sm:text-5xl md:text-6xl">
-              <span className="block">Professional</span>
-              <span className="block text-[#bb141a]">Training Solutions</span>
+              <span className="block text-[#bb141a]">Beeezy Resources</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
               Customized training programs designed to develop skills, boost performance, and drive business growth.

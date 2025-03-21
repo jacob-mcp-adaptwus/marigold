@@ -5,6 +5,8 @@ import AIServicesPage from './pages/AIServicesPage';
 import SolutionsPage from './pages/SolutionsPage';
 import TrainingPage from './pages/TrainingPage';
 import ResourcesPage from './pages/ResourcesPage';
+import BlogPage from './pages/BlogPage';
+import OurAIStoryPage from './pages/OurAIStoryPage';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/solutions" element={<SolutionsPage />} />
         <Route path="/training" element={<TrainingPage />} />
         <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/our-ai-story" element={<OurAIStoryPage />} />
       </Routes>
     </BrowserRouter>
   );

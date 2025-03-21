@@ -54,9 +54,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
       <div className="px-6 pb-6">
-        <button className="w-full bg-[#bb141a] hover:bg-[#ea5830] text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center">
+        <a 
+          href={ctaHref} 
+          className="w-full bg-[#bb141a] hover:bg-[#ea5830] text-white py-3 rounded-lg font-medium transition-colors flex items-center justify-center inline-block"
+        >
           {ctaText} <ArrowRight className="ml-2 h-4 w-4" />
-        </button>
+        </a>
       </div>
     </div>
   );

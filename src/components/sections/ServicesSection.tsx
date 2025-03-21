@@ -7,12 +7,12 @@ const ServicesSection: React.FC = () => {
     {
       icon: <BarChart3 className="h-8 w-8 text-[#f59d40]" />,
       title: 'AI Powered Advertising',
-      description: 'Leverage AI to optimize your advertising campaigns for maximum ROI and targeted audience engagement.'
+      description: 'Results sooner. Unplug faster. Our AI-driven ad management optimizes campaigns in real-time, maximizing ROI while reducing costs and manual effort.'
     },
     {
       icon: <Zap className="h-8 w-8 text-[#f59d40]" />,
-      title: 'Business Automation',
-      description: 'Streamline operations with intelligent automation, reducing manual tasks and increasing productivity.'
+      title: 'AI-Powered Business Automation',
+      description: 'Streamline operations, reduce manual work, and enhance efficiency with intelligent AI-driven workflows—empowering your business to scale effortlessly.'
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-[#f59d40]" />,

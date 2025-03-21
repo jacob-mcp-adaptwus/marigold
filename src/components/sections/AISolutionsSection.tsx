@@ -1,10 +1,19 @@
 import React from 'react';
 import { CheckCircle2, Lightbulb, ArrowRight, BarChart, Cpu } from 'lucide-react';
 
+// Helper function to format DAIsy text with colors
+const ColoredDaisy = () => (
+  <>
+    <span className="text-[#2a8735]">D</span>
+    <span className="text-[#f59d40]">AI</span>
+    <span className="text-[#2a8735]">sy</span>
+  </>
+);
+
 interface Solution {
   title: string;
   icon: React.ReactNode;
-  description: string;
+  description: React.ReactNode;
   features: string[];
   ctaText: string;
   ctaHref: string;
@@ -19,11 +28,15 @@ const AISolutionsSection: React.FC<SolutionsSectionProps> = () => {
     {
       title: 'dAisy Ad Management',
       icon: <BarChart className="h-10 w-10 text-white" />,
-      description: 'Let dAisy do the heavy lifting! Our AI-powered ad management runs your campaigns 24/7, fine-tuning targeting, budgets, and performance—so you can sit back and watch the results roll in. Results faster, unplug sooner.',
+      description: (
+        <>
+          Let <ColoredDaisy /> do the heavy lifting! Our AI-powered ad management runs your campaigns 24/7, fine-tuning targeting, budgets, and performance—so you can sit back and watch the results roll in. Results faster, unplug sooner.
+        </>
+      ),
       features: [
         'Smart budget allocation',
-        'A/B testing automation',
-        'Audience targeting optimization'
+        'Automated Management Across Multiple Platforms',
+        'A/B testing automation'
       ],
       ctaText: 'View Pricing',
       ctaHref: '/pricing',
@@ -33,11 +46,11 @@ const AISolutionsSection: React.FC<SolutionsSectionProps> = () => {
     {
       title: 'One11 Suite',
       icon: <Cpu className="h-10 w-10 text-white" />,
-      description: 'Juggling customers, marketing, and invoices? Daisy CRM keeps it all in one place, automating the busywork so you can focus on growing your business (or finally taking that coffee break).',
+      description: 'Struggling to grow your business while drowning in daily tasks? ONE11 Suite keeps everything—customers, marketing, and invoices—in one place, automating the busywork so you can spend less time working in your business and more time growing your business.',
       features: [
         'Customer relationship management',
-        'Learning management system',
-        'Email & SMS automation'
+        'Email & SMS automation',
+        'Service bookings'
       ],
       ctaText: 'Schedule Demo',
       ctaHref: '/demo',
@@ -49,9 +62,9 @@ const AISolutionsSection: React.FC<SolutionsSectionProps> = () => {
       icon: <Lightbulb className="h-10 w-10 text-white" />,
       description: 'AI isn\'t just for big tech—your business deserves smart solutions too. From chatbots that never sleep to automation that streamlines your workflow, our custom AI tools take efficiency to the next level.',
       features: [
-        'Bespoke AI development',
-        'Seamless integration with existing systems',
-        'Ongoing support and optimization'
+        'Tailored AI solutions',
+        'AI-Powered Workflows',
+        'Seamless integration with existing systems'
       ],
       ctaText: 'Get a Quote',
       ctaHref: '/quote',

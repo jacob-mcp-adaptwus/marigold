@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, BookOpen, ArrowRight } from 'lucide-react';
+import { Calendar, Users, BookOpen, ArrowRight, MapPin } from 'lucide-react';
 
 interface TrainingCourse {
   title: string;
@@ -13,6 +13,15 @@ interface TrainingCourse {
 
 const TrainingSection: React.FC = () => {
   const courses: TrainingCourse[] = [
+    {
+      title: "AI Omaha Event",
+      description: "Join us for a special event in Omaha focused on AI innovation, networking with industry leaders, and hands-on workshops.",
+      icon: <MapPin className="h-6 w-6 text-[#bb141a]" />,
+      date: "Next Event: March 15, 2024",
+      duration: "2 Days",
+      level: "All Levels",
+      link: "/training/ai-omaha"
+    },
     {
       title: "AI Marketing Mastery",
       description: "Learn how to leverage AI tools to create data-driven marketing campaigns that deliver measurable results.",
@@ -30,15 +39,6 @@ const TrainingSection: React.FC = () => {
       duration: "2 Days",
       level: "Advanced",
       link: "/training/digital-transformation"
-    },
-    {
-      title: "Data Analytics Fundamentals",
-      description: "Build a solid foundation in data analytics principles and tools for business decision-making.",
-      icon: <BookOpen className="h-6 w-6 text-[#bb141a]" />,
-      date: "Next Session: September 28, 2023",
-      duration: "6 Weeks",
-      level: "Beginner",
-      link: "/training/data-analytics"
     }
   ];
 
@@ -95,7 +95,7 @@ const TrainingSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#2a2b2a]">
-            AI <span className="text-[#bb141a]">Training</span> Programs
+            Learn, Grow, and <span className="text-[#bb141a]">Connect</span> with AI
           </h2>
           <p className="text-[#2a2b2a] max-w-3xl mx-auto text-lg md:text-xl">
             Develop your team's AI skills with our specialized training programs<br />
@@ -149,10 +149,22 @@ const TrainingSection: React.FC = () => {
         <div className="text-center mt-12">
           <a 
             href="/training" 
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#bb141a] text-white font-medium hover:bg-[#ea5830] transition-colors"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#bb141a] text-white font-medium hover:bg-[#ea5830] transition-colors hover:scale-105 transform transition-transform duration-300"
           >
-            View All Training Programs <ArrowRight className="ml-2 h-4 w-4" />
+            View All Training Programs <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" />
           </a>
+          
+          {/* Add wiggle animation */}
+          <style>{`
+            @keyframes wiggle {
+              0%, 100% { transform: translateX(0); }
+              25% { transform: translateX(2px); }
+              75% { transform: translateX(-2px); }
+            }
+            .animate-wiggle {
+              animation: wiggle 1s ease-in-out infinite;
+            }
+          `}</style>
         </div>
       </div>
     </section>

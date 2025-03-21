@@ -13,6 +13,28 @@ import {
   Layers 
 } from 'lucide-react';
 
+// Helper function to format DAIsy text with colors
+const ColoredDaisy = () => (
+  <>
+    <span className="text-[#2a8735]">D</span>
+    <span className="text-[#f59d40]">AI</span>
+    <span className="text-[#2a8735]">sy</span>
+  </>
+);
+
+// Helper function to process text that might contain dAisy
+const formatWithDaisy = (text: string) => {
+  if (text.includes('dAisy')) {
+    const parts = text.split('dAisy');
+    return (
+      <>
+        {parts[0]}<ColoredDaisy />{parts[1]}
+      </>
+    );
+  }
+  return text;
+};
+
 interface FeatureProps {
   title: string;
   description: string;
@@ -34,15 +56,16 @@ const Feature: React.FC<FeatureProps> = ({ title, description, icon }) => {
 };
 
 interface SolutionCardProps {
-  title: string;
+  title: string | React.ReactNode;
   description: string;
-  longDescription: string;
+  longDescription: string | React.ReactNode;
   features: FeatureProps[];
   imageSrc: string;
   ctaText: string;
   ctaHref: string;
   color: string;
   isReversed?: boolean;
+  id?: string;
 }
 
 const SolutionCard: React.FC<SolutionCardProps> = ({
@@ -54,10 +77,11 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
   ctaText,
   ctaHref,
   color,
-  isReversed = false
+  isReversed = false,
+  id
 }) => {
   return (
-    <div id={title.toLowerCase().replace(/\s+/g, '-')} className="py-16 border-b border-gray-200 scroll-mt-20">
+    <div id={id || (typeof title === 'string' ? title.toLowerCase().replace(/\s+/g, '-') : 'solution')} className="py-16 border-b border-gray-200 scroll-mt-20">
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${isReversed ? 'flex flex-col-reverse md:flex-row-reverse' : 'flex flex-col-reverse md:flex-row'} items-center gap-12`}>
         <div className="flex-1">
           <div className="max-w-xl">
@@ -93,13 +117,11 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
         </div>
         <div className="flex-1 md:flex-initial md:w-2/5 flex items-center justify-center">
           <div className="p-8 rounded-lg bg-gray-50 flex items-center justify-center w-full max-w-sm aspect-video border border-gray-100">
-            {title === "dAisy Ad Management" && (
+            {(typeof title === 'string' && title === "dAisy Ad Management") || (id === "daisy-ad-management") ? (
               <Megaphone className="h-24 w-24 text-[#bb141a]" />
-            )}
-            {title === "One11 Suite" && (
+            ) : (typeof title === 'string' && title === "One11 Suite") ? (
               <LayoutGrid className="h-24 w-24 text-[#2a2b2a]" />
-            )}
-            {title === "Future Development" && (
+            ) : (
               <Presentation className="h-24 w-24 text-[#f59d40]" />
             )}
           </div>
@@ -112,22 +134,22 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
 const SolutionsPage: React.FC = () => {
   const solutions = [
     {
-      title: "dAisy Ad Management",
+      title: <><ColoredDaisy /> Ad Management</>,
       description: "AI-powered advertising management that maximizes your ROI",
-      longDescription: "Let dAisy do the heavy lifting! Our AI-powered ad management runs your campaigns 24/7, fine-tuning targeting, budgets, and performance—so you can sit back and watch the results roll in. Results faster, unplug sooner.",
+      longDescription: formatWithDaisy("Let dAisy do the heavy lifting! Our AI-powered ad management runs your campaigns 24/7, fine-tuning targeting, budgets, and performance—so you can sit back and watch the results roll in. Results faster, unplug sooner."),
       features: [
         {
-          title: "Cross-Platform Campaigns",
+          title: "Smart budget allocation",
+          description: "Intelligent distribution of your ad spend to maximize performance",
+          icon: <CheckCircle2 className="h-5 w-5 text-[#bb141a]" />
+        },
+        {
+          title: "Automated Management Across Multiple Platforms",
           description: "Manage Google, Facebook, Instagram and TikTok ads from one dashboard",
           icon: <CheckCircle2 className="h-5 w-5 text-[#bb141a]" />
         },
         {
-          title: "AI Budget Optimization",
-          description: "Smart allocation of your ad spend to maximize performance",
-          icon: <CheckCircle2 className="h-5 w-5 text-[#bb141a]" />
-        },
-        {
-          title: "Automated A/B Testing",
+          title: "A/B testing automation",
           description: "Continuously test different ad variations to improve results",
           icon: <CheckCircle2 className="h-5 w-5 text-[#bb141a]" />
         },
@@ -143,9 +165,10 @@ const SolutionsPage: React.FC = () => {
         }
       ],
       imageSrc: "/assets/images/daisy-dashboard.jpg",
-      ctaText: "Learn More",
+      ctaText: "View Pricing",
       ctaHref: "/daisy",
-      color: "#bb141a"
+      color: "#bb141a",
+      id: "daisy-ad-management"
     },
     {
       title: "One11 Suite",
@@ -158,13 +181,8 @@ const SolutionsPage: React.FC = () => {
           icon: <CheckCircle2 className="h-5 w-5 text-[#2a2b2a]" />
         },
         {
-          title: "Appointment Bookings",
+          title: "Appointments / Bookings",
           description: "Let clients book appointments directly into your calendar",
-          icon: <CheckCircle2 className="h-5 w-5 text-[#2a2b2a]" />
-        },
-        {
-          title: "Learning Management System",
-          description: "Create, sell and deliver online courses to your customers",
           icon: <CheckCircle2 className="h-5 w-5 text-[#2a2b2a]" />
         },
         {
@@ -175,6 +193,11 @@ const SolutionsPage: React.FC = () => {
         {
           title: "Custom Integrations",
           description: "Connect with your favorite tools and automate workflows",
+          icon: <CheckCircle2 className="h-5 w-5 text-[#2a2b2a]" />
+        },
+        {
+          title: "Learning Management System",
+          description: "Create, sell and deliver online courses to your customers",
           icon: <CheckCircle2 className="h-5 w-5 text-[#2a2b2a]" />
         }
       ],
@@ -246,7 +269,7 @@ const SolutionsPage: React.FC = () => {
               <div className="h-12 w-12 rounded-full bg-[#bb141a]/10 flex items-center justify-center mb-4">
                 <Megaphone className="h-6 w-6 text-[#bb141a]" />
               </div>
-              <h3 className="text-lg font-semibold text-[#2a2b2a] mb-2">dAisy Ad Management</h3>
+              <h3 className="text-lg font-semibold text-[#2a2b2a] mb-2"><ColoredDaisy /> Ad Management</h3>
               <p className="text-gray-600 mb-4">AI-powered advertising platform that helps you create, manage, and optimize ad campaigns across multiple channels.</p>
               <a href="#daisy-ad-management" className="text-[#bb141a] font-medium inline-flex items-center">
                 Learn more <ArrowRight className="ml-1 h-4 w-4" />
@@ -290,6 +313,7 @@ const SolutionsPage: React.FC = () => {
             ctaHref={solution.ctaHref}
             color={solution.color}
             isReversed={solution.isReversed}
+            id={solution.id}
           />
         ))}
       </div>

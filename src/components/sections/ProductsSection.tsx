@@ -58,6 +58,7 @@ const ProductsSection: React.FC = () => {
                   variant="outline" 
                   className="w-full justify-center mt-2"
                   withArrow
+                  href={`/products/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   Learn more
                 </Button>
@@ -67,7 +68,7 @@ const ProductsSection: React.FC = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <Button size="lg" withArrow>
+          <Button size="lg" withArrow href="/products">
             View all solutions
           </Button>
         </div>

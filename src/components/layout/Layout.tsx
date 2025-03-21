@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 
 import Header from './Header';
 import Footer from './Footer';
+import ChatBot from '../ui/ChatBot';
+import CTASection from '../sections/CTASection';
+import NewsletterSection from '../sections/NewsletterSection';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -29,7 +32,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main>
         {children}
       </main>
+      <CTASection />
+      <NewsletterSection />
       <Footer />
+      <ChatBot />
     </div>
   );
 };
