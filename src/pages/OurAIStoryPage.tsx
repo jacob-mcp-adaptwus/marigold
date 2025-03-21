@@ -20,7 +20,7 @@ const storyData = {
   // Section 1: Beginning
   section1: {
     title: "The Beginning",
-    content: "MarigoldONE11 started with a simple idea: what if we could harness the power of AI not just as a service we offer, but as the foundation of how we operate? In 2021, as AI tools became increasingly sophisticated, we saw an opportunity to build a different kind of agency—one where AI wasn't just a buzzword, but our core competitive advantage."
+    content: "Marigold ONE11 began with a single, powerful idea: What if business could grow the way gardens do—through care, companionship, and the right environment? Inspired by the practice of companion planting, we embraced the concept that marigolds enhance the growth of surrounding plants, and we built a company that would do the same for businesses.\n\nFounded in Omaha in a time of rapid technological change, we saw not just the power of AI, but the potential for it to nurture businesses just as marigolds protect and enrich a garden."
   },
   
   // Vision callout
@@ -60,14 +60,14 @@ const storyData = {
   // Client testimonial
   testimonial: {
     title: "Client Success Story",
-    quote: "After implementing MarigoldONE11's AI systems, we saw our conversion rates increase by 52% while reducing our marketing team's workload by nearly a third. The insights we get from their dashboards have transformed how we approach our digital strategy.",
+    quote: "After implementing Marigold ONE11's AI systems, we saw our conversion rates increase by 52% while reducing our marketing team's workload by nearly a third. The insights we get from their dashboards have transformed how we approach our digital strategy.",
     attribution: "— Marketing Director, E-commerce Client"
   },
   
   // Section 4: Looking Forward
   section4: {
     title: "Looking Forward",
-    content1: "Today, MarigoldONE11 continues to push the boundaries of what's possible with AI in marketing and business operations. We're constantly developing new tools and refining our existing ones, always with the goal of helping our clients work smarter, not harder.",
+    content1: "Today, Marigold ONE11 continues to push the boundaries of what's possible with AI in marketing and business operations. We're constantly developing new tools and refining our existing ones, always with the goal of helping our clients work smarter, not harder.",
     content2: "Our story is still being written, but one thing is clear: AI isn't just part of our business model—it is our business model. And we're excited to help more companies discover the transformative power of artificial intelligence, tailored to their unique needs."
   },
   
