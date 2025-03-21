@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Logo from '../ui/Logo';
@@ -17,6 +17,65 @@ const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  
+  // Create refs for dropdown menus
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const mobileMenuRef = useRef<HTMLDivElement | null>(null);
+  
+  // AI Services submenu items
+  const aiServicesItems = [
+    { 
+      name: 'dAisy Ad Management', 
+      displayName: (<><ColoredDaisy /> Ad Management</>),
+      href: '#daisy-ad-management' 
+    },
+    { name: 'One11 Suite', href: '#one11-suite' },
+    { name: 'Custom AI Applications', href: '#custom-ai' }
+  ];
+
+  // Resources submenu items
+  const resourcesItems = [
+    { name: 'Blog', href: '/blog' },
+    { name: 'Webinars', href: '/resources#on-demand-webinars' },
+    { name: 'GPTs', href: '/resources#gpts' }
+  ];
+
+  const navItems = [
+    { name: 'AI Services', href: '/ai-services', isInternal: true, hasDropdown: false },
+    { name: 'Solutions', href: '/solutions', isInternal: true, hasDropdown: false },
+    { name: 'Training', href: '/training', isInternal: true, hasDropdown: false },
+    { name: 'Resources', href: '/resources', isInternal: true, hasDropdown: true, dropdownItems: resourcesItems }
+  ];
+  
+  // Add click outside listener to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close dropdown menus when clicking outside
+      if (activeDropdown) {
+        const dropdownElement = dropdownRefs.current[activeDropdown];
+        if (dropdownElement && !dropdownElement.contains(event.target as Node)) {
+          setActiveDropdown(null);
+        }
+      }
+      
+      // Close mobile menu when clicking outside (but don't close when clicking the toggle button)
+      const toggleButton = document.querySelector('[data-mobile-toggle]');
+      if (
+        mobileMenuOpen && 
+        mobileMenuRef.current && 
+        !mobileMenuRef.current.contains(event.target as Node) && 
+        toggleButton !== event.target && 
+        !toggleButton?.contains(event.target as Node)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [activeDropdown, mobileMenuOpen]);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -45,35 +104,18 @@ const Header: React.FC = () => {
     }
   };
 
-  // AI Services submenu items
-  const aiServicesItems = [
-    { 
-      name: 'dAisy Ad Management', 
-      displayName: (<><ColoredDaisy /> Ad Management</>),
-      href: '#daisy-ad-management' 
-    },
-    { name: 'One11 Suite', href: '#one11-suite' },
-    { name: 'Custom AI Applications', href: '#custom-ai' }
-  ];
-
-  // Resources submenu items
-  const resourcesItems = [
-    { name: 'Blog', href: '/blog' },
-    { name: 'Webinars', href: '/resources#on-demand-webinars' },
-    { name: 'GPTs', href: '/resources#gpts' }
-  ];
-
-  const navItems = [
-    { name: 'AI Services', href: '/ai-services', isInternal: true, hasDropdown: false },
-    { name: 'Solutions', href: '/solutions', isInternal: true, hasDropdown: false },
-    { name: 'Training', href: '/training', isInternal: true, hasDropdown: false },
-    { name: 'Resources', href: '/resources', isInternal: true, hasDropdown: true, dropdownItems: resourcesItems }
-  ];
+  // Helper function to determine if navigation should scroll to top
+  const shouldScrollToTop = (href: string) => {
+    return !href.includes('#');
+  };
 
   const renderNavLink = (item: any) => {
     if (item.hasDropdown) {
       return (
-        <div className="relative">
+        <div 
+          className="relative" 
+          ref={(el) => { dropdownRefs.current[item.name] = el; }}
+        >
           <button
             onClick={() => toggleDropdown(item.name)}
             className={`flex items-center font-medium transition-colors px-3 py-1 rounded ${
@@ -95,7 +137,9 @@ const Header: React.FC = () => {
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#f59d40]"
                     onClick={() => {
                       setActiveDropdown(null);
-                      window.scrollTo(0, 0);
+                      if (shouldScrollToTop(dropdownItem.href)) {
+                        window.scrollTo(0, 0);
+                      }
                     }}
                   >
                     {dropdownItem.displayName || dropdownItem.name}
@@ -115,7 +159,11 @@ const Header: React.FC = () => {
               ? 'text-[#2a2b2a] hover:text-[#f59d40] hover:bg-[#f8f8f8]' 
               : 'text-white hover:text-[#f59d40] bg-[#2a2b2a]/70 hover:bg-[#2a2b2a]/90'
           }`}
-          onClick={() => window.scrollTo(0, 0)}
+          onClick={() => {
+            if (shouldScrollToTop(item.href)) {
+              window.scrollTo(0, 0);
+            }
+          }}
         >
           {item.name}
         </Link>
@@ -139,15 +187,15 @@ const Header: React.FC = () => {
   const renderMobileNavLink = (item: any) => {
     if (item.hasDropdown) {
       return (
-        <div>
+        <div ref={(el) => { dropdownRefs.current[`mobile-${item.name}`] = el; }}>
           <button
-            onClick={() => toggleDropdown(item.name)}
+            onClick={() => toggleDropdown(`mobile-${item.name}`)}
             className="flex items-center justify-between w-full py-2 text-[#2a2b2a] hover:text-[#f59d40] font-medium"
           >
             {item.name}
-            <ChevronDown className="ml-1 h-4 w-4" />
+            <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${activeDropdown === `mobile-${item.name}` ? 'transform rotate-180' : ''}`} />
           </button>
-          {activeDropdown === item.name && (
+          {activeDropdown === `mobile-${item.name}` && (
             <div className="pl-4 space-y-1 mt-1">
               {item.dropdownItems.map((dropdownItem: any) => (
                 <Link
@@ -156,7 +204,10 @@ const Header: React.FC = () => {
                   className="block py-2 text-[#2a2b2a] hover:text-[#f59d40]"
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    window.scrollTo(0, 0);
+                    setActiveDropdown(null);
+                    if (shouldScrollToTop(dropdownItem.href)) {
+                      window.scrollTo(0, 0);
+                    }
                   }}
                 >
                   {dropdownItem.displayName || dropdownItem.name}
@@ -168,12 +219,14 @@ const Header: React.FC = () => {
       );
     } else if (item.isInternal) {
       return (
-        <Link 
+        <Link
           to={item.href}
           className="block py-2 text-[#2a2b2a] hover:text-[#f59d40] font-medium"
           onClick={() => {
             setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
+            if (shouldScrollToTop(item.href)) {
+              window.scrollTo(0, 0);
+            }
           }}
         >
           {item.name}
@@ -181,13 +234,10 @@ const Header: React.FC = () => {
       );
     } else {
       return (
-        <a 
+        <a
           href={item.href}
           className="block py-2 text-[#2a2b2a] hover:text-[#f59d40] font-medium"
-          onClick={() => {
-            setMobileMenuOpen(false);
-            window.scrollTo(0, 0);
-          }}
+          onClick={() => setMobileMenuOpen(false)}
         >
           {item.name}
         </a>
@@ -220,6 +270,7 @@ const Header: React.FC = () => {
           <button 
             className="md:hidden"
             onClick={toggleMobileMenu}
+            data-mobile-toggle
           >
             {mobileMenuOpen ? (
               <X className={`h-6 w-6 ${isSticky ? 'text-[#2a2b2a]' : 'text-white'}`} />
@@ -232,7 +283,7 @@ const Header: React.FC = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="md:hidden bg-white shadow-lg" ref={mobileMenuRef}>
           <div className="px-4 py-3 space-y-2">
             {navItems.map((item) => (
               <div key={item.name}>
@@ -243,7 +294,6 @@ const Header: React.FC = () => {
               variant="secondary" 
               size="md" 
               className="w-full mt-2"
-              onClick={() => setMobileMenuOpen(false)}
               href="/contact"
             >
               Contact Us

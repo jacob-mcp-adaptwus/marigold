@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import { 
   CheckCircle2, 
@@ -10,6 +10,7 @@ import {
   Clock,
   User
 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 interface ResourceCardProps {
   title: string;
@@ -110,8 +111,13 @@ const ResourceSection: React.FC<ResourceSectionProps> = ({
   ctaText,
   ctaLink
 }) => {
+  const sectionId = title.toLowerCase().replace(/\s+/g, '-');
+  
   return (
-    <div id={title.toLowerCase().replace(/\s+/g, '-')} className="py-16 px-4 sm:px-6 lg:px-8 scroll-mt-24 border-b border-gray-200">
+    <div 
+      id={sectionId} 
+      className="py-16 px-4 sm:px-6 lg:px-8 scroll-mt-24 md:scroll-mt-28 border-b border-gray-200"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -148,6 +154,22 @@ const ResourceSection: React.FC<ResourceSectionProps> = ({
 };
 
 const ResourcesPage: React.FC = () => {
+  const location = useLocation();
+  
+  // Scroll to the hash fragment after the page loads
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1); // Remove the leading #
+      const element = document.getElementById(id);
+      if (element) {
+        // Add a slight delay to make sure page is fully rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    }
+  }, [location]);
+
   // Blog resources
   const blogResources: ResourceCardProps[] = [
     {
@@ -278,8 +300,8 @@ const ResourcesPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold text-[#2a2b2a] sm:text-5xl md:text-6xl">
-              <span className="block">Knowledge</span>
-              <span className="block text-[#f59d40]">Resources</span>
+              <span className="inline-block">Knowledge </span>
+              <span className="inline-block text-[#f59d40]">Resources</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
               Explore our collection of articles, webinars, and AI tools designed to help you grow your business.

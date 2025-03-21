@@ -149,11 +149,13 @@ const BlogPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold text-[#2a2b2a] sm:text-5xl md:text-6xl">
-              <span className="block">Our</span>
-              <span className="block text-[#f59d40]">Blog</span>
+              <span className="inline-block">Our&nbsp;</span>
+              <span className="inline-block text-[#f59d40]">Blog</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-xl text-gray-500">
-              Insights, trends, and strategies to help you succeed in the digital marketing landscape.
+              Explore AI strategies, business automation tips, digital marketing insights, 
+              <br />
+              and technology trends that help you deliver results faster and unplug sooner.
             </p>
           </div>
         </div>

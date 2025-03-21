@@ -11,6 +11,9 @@ interface ButtonProps {
   withArrow?: boolean;
   onClick?: () => void;
   external?: boolean;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,6 +25,9 @@ const Button: React.FC<ButtonProps> = ({
   withArrow = false,
   onClick,
   external = false,
+  disabled = false,
+  type = 'button',
+  ariaLabel,
 }) => {
   // Add wiggle animation styles to the document head
   useEffect(() => {
@@ -66,22 +72,30 @@ const Button: React.FC<ButtonProps> = ({
     lg: 'text-lg px-6 py-3',
   };
   
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+  const disabledClass = disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : '';
+  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClass} ${className}`;
   
   const content = (
     <>
       {children}
       {withArrow && (
-        <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" />
+        <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" aria-hidden="true" />
       )}
     </>
   );
   
-  if (href) {
+  if (href && !disabled) {
     // Use regular anchor tag for external links
     if (external || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
       return (
-        <a href={href} className={classes} data-button-component target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
+        <a 
+          href={href} 
+          className={classes} 
+          data-button-component 
+          target={external ? "_blank" : undefined} 
+          rel={external ? "noopener noreferrer" : undefined}
+          aria-label={ariaLabel}
+        >
           {content}
         </a>
       );
@@ -94,6 +108,7 @@ const Button: React.FC<ButtonProps> = ({
         className={classes} 
         data-button-component
         onClick={() => window.scrollTo(0, 0)}
+        aria-label={ariaLabel}
       >
         {content}
       </Link>
@@ -101,7 +116,15 @@ const Button: React.FC<ButtonProps> = ({
   }
   
   return (
-    <button className={classes} onClick={onClick} data-button-component>
+    <button 
+      className={classes} 
+      onClick={onClick} 
+      data-button-component 
+      disabled={disabled}
+      type={type}
+      aria-label={ariaLabel}
+      aria-disabled={disabled}
+    >
       {content}
     </button>
   );

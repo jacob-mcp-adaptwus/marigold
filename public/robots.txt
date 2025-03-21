@@ -1,3 +1,12 @@
 # https://www.robotstxt.org/robotstxt.html
+# Allow all web crawlers
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow crawling of administrative areas
+Disallow: /admin/
+Disallow: /login
+Disallow: /account
+
+# Sitemap location
+Sitemap: https://marigoldone11.com/sitemap.xml

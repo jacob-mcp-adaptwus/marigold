@@ -16,16 +16,16 @@ const customStyles = `
 const ChatBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{text: string, sender: 'user' | 'bot'}[]>([
-    { text: "Hi there! I'm DAIsy, your AI assistant. How can I help you today?", sender: 'bot' }
+    { text: "Hi there! I'm dAIsy, your AI assistant. How can I help you today?", sender: 'bot' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isHovering, setIsHovering] = useState(false);
   const [showInitialPulse, setShowInitialPulse] = useState(true);
 
-  // Format DAIsy text with proper colors
+  // Format dAIsy text with proper colors
   const ColoredDaisy = () => (
     <>
-      <span className="text-[#2a8735]">D</span>
+      <span className="text-[#2a8735]">d</span>
       <span className="text-[#f59d40]">AI</span>
       <span className="text-[#2a8735]">sy</span>
     </>
@@ -54,6 +54,7 @@ const ChatBot: React.FC = () => {
   const toggleChat = () => {
     setIsOpen(!isOpen);
     setShowInitialPulse(false); // Hide pulse once clicked
+    setIsHovering(false); // Immediately stop hovering state to prevent flickering
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -77,10 +78,10 @@ const ChatBot: React.FC = () => {
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {/* Chat label - show on hover or during initial pulse */}
-      {(isHovering || (showInitialPulse && !isOpen)) && (
-        <div className="absolute -top-16 right-1 bg-gradient-to-r from-[#f59d40] to-[#ea5830] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-all duration-300 z-20 animate-bounce-subtle">
+      {(isHovering || (showInitialPulse && !isOpen)) && !isOpen && (
+        <div className="absolute -top-14 right-0 bg-white text-[#2a2b2a] px-3 py-2 rounded-md text-sm font-medium shadow-md transition-all duration-300 z-30 border border-gray-200 pointer-events-none">
           Chat with <ColoredDaisy />
-          <div className="absolute bottom-[-6px] right-6 w-3 h-3 bg-[#ea5830] transform rotate-45"></div>
+          <div className="absolute bottom-[-6px] right-8 w-3 h-3 bg-white border-r border-b border-gray-200 transform rotate-45"></div>
         </div>
       )}
       
@@ -100,7 +101,7 @@ const ChatBot: React.FC = () => {
           <X className="h-6 w-6 text-white" />
         ) : (
           <div className="h-full w-full flex items-center justify-center">
-            <img src={daisyImage} alt="DAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
+            <img src={daisyImage} alt="dAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
           </div>
         )}
       </button>
@@ -112,7 +113,7 @@ const ChatBot: React.FC = () => {
           <div className="bg-gradient-to-r from-[#f59d40] to-[#ea5830] p-4 rounded-t-lg">
             <div className="flex items-center">
               <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center mr-3 overflow-hidden">
-                <img src={daisyImage} alt="DAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
+                <img src={daisyImage} alt="dAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
               </div>
               <div>
                 <h3 className="text-white font-bold"><ColoredDaisy /> Assistant</h3>
@@ -131,7 +132,7 @@ const ChatBot: React.FC = () => {
                 >
                   {msg.sender === 'bot' && (
                     <div className="h-8 w-8 rounded-full overflow-hidden flex-shrink-0 mr-2">
-                      <img src={daisyImage} alt="DAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
+                      <img src={daisyImage} alt="dAIsy" className="h-full w-full object-cover scale-[1.5] transform translate-y-2" />
                     </div>
                   )}
                   <div 
@@ -141,12 +142,12 @@ const ChatBot: React.FC = () => {
                         : 'bg-[#f59d40] bg-opacity-10 text-[#2a2b2a]'
                     }`}
                   >
-                    {msg.text.includes("DAIsy") 
+                    {msg.text.includes("DAIsy") || msg.text.includes("dAIsy") 
                       ? (
                         <>
-                          {msg.text.split("DAIsy")[0]}
+                          {msg.text.split(/DAIsy|dAIsy/)[0]}
                           <ColoredDaisy />
-                          {msg.text.split("DAIsy")[1]}
+                          {msg.text.split(/DAIsy|dAIsy/)[1]}
                         </>
                       ) 
                       : msg.text

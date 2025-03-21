@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* For improved mobile scrolling */
+  @media screen and (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
