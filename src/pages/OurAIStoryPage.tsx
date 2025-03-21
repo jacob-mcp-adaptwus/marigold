@@ -94,8 +94,8 @@ const storyData = {
   // Section 3: DAIsy Revolution
   section3: {
     title: "The dAisy Revolution",
-    content1: "Our flagship product, dAisy Ad Management, was born from our own need to optimize advertising campaigns more efficiently. We built an AI system that could not only manage campaigns across multiple platforms but learn and improve over time.",
-    content2: "What started as an internal tool quickly became our most sought-after offering. Clients who adopted dAisy saw an average of 40% improvement in ad performance and 60% reduction in management time."
+    content1: "Our flagship product, <ColoredDaisy /> Ad Management, was born from our own need to optimize advertising campaigns more efficiently. We built an AI system that could not only manage campaigns across multiple platforms but learn and improve over time.",
+    content2: "What started as an internal tool quickly became our most sought-after offering. Clients who adopted <ColoredDaisy /> saw an average of 40% improvement in ad performance and 60% reduction in management time."
   },
   
   // Client testimonial
@@ -199,8 +199,8 @@ const OurAIStoryPage: React.FC = () => {
                 : storyData.section3.title
               }
             </h2>
-            <p>{storyData.section3.content1}</p>
-            <p>{storyData.section3.content2}</p>
+            <p>Our flagship product, <ColoredDaisy /> Ad Management, was born from our own need to optimize advertising campaigns more efficiently. We built an AI system that could not only manage campaigns across multiple platforms but learn and improve over time.</p>
+            <p>What started as an internal tool quickly became our most sought-after offering. Clients who adopted <ColoredDaisy /> saw an average of 40% improvement in ad performance and 60% reduction in management time.</p>
             
             <div className="my-12 p-8 bg-gradient-to-r from-[#fdf8f1] to-white rounded-xl border border-[#f59d40] shadow-xl relative overflow-hidden">
               {/* Decorative elements */}
