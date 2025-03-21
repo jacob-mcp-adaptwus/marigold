@@ -33,7 +33,10 @@ const Footer: React.FC = () => {
             </div>
             <p className="text-gray-600 mb-4">
               AI-driven business solutions that save you time at every step. We use AI for everything so like you, we can deliver results faster and unplug sooner.
-              <a href="/our-ai-story" className="text-[#f59d40] hover:underline ml-1">Read the whole story →</a>
+              <div className="text-sm mt-1">
+                <span className="text-gray-400">Discover how AI transformed our agency.</span>
+                <a href="/our-ai-story" className="text-[#f59d40] hover:underline ml-1">Read the whole story →</a>
+              </div>
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
