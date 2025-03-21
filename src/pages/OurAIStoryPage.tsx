@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
 import { ArrowRight, Sparkles, Zap, Brain, Star, Lightbulb } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // Background pattern component
 const MarigoldBackground = () => (
@@ -287,12 +288,12 @@ const OurAIStoryPage: React.FC = () => {
                 </h3>
                 <p className="text-lg">{storyData.cta.content}</p>
                 <div className="mt-6">
-                  <a
-                    href={storyData.cta.buttonLink}
+                  <Link
+                    to={storyData.cta.buttonLink}
                     className="inline-flex items-center px-6 py-3 border border-[#2a8735] text-base font-medium rounded-md shadow-sm text-[#2a8735] bg-transparent hover:bg-[#f8f8f8] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2a8735] transition-colors"
                   >
                     {storyData.cta.buttonText} <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

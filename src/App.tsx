@@ -7,6 +7,7 @@ import TrainingPage from './pages/TrainingPage';
 import ResourcesPage from './pages/ResourcesPage';
 import BlogPage from './pages/BlogPage';
 import OurAIStoryPage from './pages/OurAIStoryPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/resources" element={<ResourcesPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/our-ai-story" element={<OurAIStoryPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </BrowserRouter>
   );
