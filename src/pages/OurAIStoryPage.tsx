@@ -143,14 +143,39 @@ const OurAIStoryPage: React.FC = () => {
             <p>{storyData.section3.content2}</p>
             
             <div className="my-12 p-6 bg-gradient-to-r from-[#fdf8f1] to-[#fff8ea] rounded-xl border border-[#f59d40] relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 opacity-10">
-                <Star className="w-full h-full text-[#f59d40]" />
+              {/* Tech circuit pattern */}
+              <div className="absolute inset-0 z-0 opacity-5">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                      <path d="M10,50 L90,50" stroke="#bb141a" strokeWidth="1" />
+                      <path d="M50,10 L50,90" stroke="#bb141a" strokeWidth="1" />
+                      <path d="M20,20 L80,80" stroke="#bb141a" strokeWidth="1" />
+                      <path d="M20,80 L80,20" stroke="#bb141a" strokeWidth="1" />
+                      <circle cx="50" cy="50" r="45" fill="none" stroke="#bb141a" strokeWidth="1" />
+                      <circle cx="50" cy="50" r="30" fill="none" stroke="#bb141a" strokeWidth="1" />
+                      <circle cx="50" cy="50" r="15" fill="none" stroke="#bb141a" strokeWidth="1" />
+                    </pattern>
+                    <pattern id="marigold" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+                      <path d="M30,10 C35,10 40,15 40,20 C40,25 35,30 30,30 C25,30 20,25 20,20 C20,15 25,10 30,10 Z" fill="#f59d40" opacity="0.2" />
+                      <path d="M30,15 C33,15 36,18 36,21 C36,24 33,27 30,27 C27,27 24,24 24,21 C24,18 27,15 30,15 Z" fill="#f59d40" opacity="0.4" />
+                      <path d="M30,40 L30,50" stroke="#2a8735" strokeWidth="1" opacity="0.5" />
+                      <path d="M28,42 L26,46" stroke="#2a8735" strokeWidth="1" opacity="0.5" />
+                      <path d="M32,42 L34,46" stroke="#2a8735" strokeWidth="1" opacity="0.5" />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#circuit)" />
+                  <rect width="100%" height="100%" fill="url(#marigold)" />
+                </svg>
               </div>
-              <h3 className="text-xl font-bold text-[#2a2b2a] mb-4">{storyData.testimonial.title}</h3>
-              <p className="mb-2">
-                "{storyData.testimonial.quote}"
-              </p>
-              <p className="italic text-right m-0">{storyData.testimonial.attribution}</p>
+              
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-[#2a2b2a] mb-4">{storyData.testimonial.title}</h3>
+                <p className="mb-2">
+                  "{storyData.testimonial.quote}"
+                </p>
+                <p className="italic text-right m-0">{storyData.testimonial.attribution}</p>
+              </div>
             </div>
             
             <h2 className="text-3xl font-bold text-[#2a2b2a] mb-6">{storyData.section4.title}</h2>
