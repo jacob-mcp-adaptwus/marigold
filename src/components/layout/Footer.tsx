@@ -36,7 +36,13 @@ const Footer: React.FC = () => {
               AI-driven business solutions that save you time at every step. We use AI for everything so like you, we can deliver results faster and unplug sooner.
               <div className="text-sm mt-1">
                 <span className="text-gray-400">Discover how AI transformed our agency.</span>
-                <Link to="/our-ai-story" className="text-[#f59d40] hover:underline ml-1">Read the whole story →</Link>
+                <Link 
+                  to="/our-ai-story" 
+                  className="text-[#f59d40] hover:underline ml-1"
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  Read the whole story →
+                </Link>
               </div>
             </p>
             <div className="flex space-x-4">
@@ -56,7 +62,11 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               {serviceLinks.map((item) => (
                 <li key={item}>
-                  <Link to={`/services/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-600 hover:text-[#f59d40] transition-colors">
+                  <Link 
+                    to={`/services/${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                    className="text-gray-600 hover:text-[#f59d40] transition-colors"
+                    onClick={() => window.scrollTo(0, 0)}
+                  >
                     {item}
                   </Link>
                 </li>
@@ -72,6 +82,7 @@ const Footer: React.FC = () => {
                   <Link 
                     to={`/products/${item.toLowerCase().replace(/\s+/g, '-')}`} 
                     className="text-gray-600 hover:text-[#f59d40] transition-colors"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     {formatDaisyText(item)}
                   </Link>

@@ -89,7 +89,12 @@ const Button: React.FC<ButtonProps> = ({
     
     // Use React Router's Link for internal navigation
     return (
-      <Link to={href} className={classes} data-button-component>
+      <Link 
+        to={href} 
+        className={classes} 
+        data-button-component
+        onClick={() => window.scrollTo(0, 0)}
+      >
         {content}
       </Link>
     );

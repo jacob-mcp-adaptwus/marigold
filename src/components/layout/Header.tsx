@@ -93,7 +93,10 @@ const Header: React.FC = () => {
                     key={dropdownItem.name}
                     to={dropdownItem.href}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#f59d40]"
-                    onClick={() => setActiveDropdown(null)}
+                    onClick={() => {
+                      setActiveDropdown(null);
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     {dropdownItem.displayName || dropdownItem.name}
                   </Link>
@@ -112,6 +115,7 @@ const Header: React.FC = () => {
               ? 'text-[#2a2b2a] hover:text-[#f59d40] hover:bg-[#f8f8f8]' 
               : 'text-white hover:text-[#f59d40] bg-[#2a2b2a]/70 hover:bg-[#2a2b2a]/90'
           }`}
+          onClick={() => window.scrollTo(0, 0)}
         >
           {item.name}
         </Link>
@@ -150,7 +154,10 @@ const Header: React.FC = () => {
                   key={dropdownItem.name}
                   to={dropdownItem.href}
                   className="block py-2 text-[#2a2b2a] hover:text-[#f59d40]"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
                 >
                   {dropdownItem.displayName || dropdownItem.name}
                 </Link>
@@ -164,7 +171,10 @@ const Header: React.FC = () => {
         <Link 
           to={item.href}
           className="block py-2 text-[#2a2b2a] hover:text-[#f59d40] font-medium"
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={() => {
+            setMobileMenuOpen(false);
+            window.scrollTo(0, 0);
+          }}
         >
           {item.name}
         </Link>
@@ -174,7 +184,10 @@ const Header: React.FC = () => {
         <a 
           href={item.href}
           className="block py-2 text-[#2a2b2a] hover:text-[#f59d40] font-medium"
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={() => {
+            setMobileMenuOpen(false);
+            window.scrollTo(0, 0);
+          }}
         >
           {item.name}
         </a>
