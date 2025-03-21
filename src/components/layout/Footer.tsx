@@ -2,6 +2,7 @@ import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import Button from '../ui/Button';
 import MarigoldLogo from '../ui/MarigoldLogo';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   const socialLinks = ['twitter', 'facebook', 'linkedin', 'instagram'];
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
               AI-driven business solutions that save you time at every step. We use AI for everything so like you, we can deliver results faster and unplug sooner.
               <div className="text-sm mt-1">
                 <span className="text-gray-400">Discover how AI transformed our agency.</span>
-                <a href="/our-ai-story" className="text-[#f59d40] hover:underline ml-1">Read the whole story →</a>
+                <Link to="/our-ai-story" className="text-[#f59d40] hover:underline ml-1">Read the whole story →</Link>
               </div>
             </p>
             <div className="flex space-x-4">
@@ -55,9 +56,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               {serviceLinks.map((item) => (
                 <li key={item}>
-                  <a href={`/services/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-600 hover:text-[#f59d40] transition-colors">
+                  <Link to={`/services/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-gray-600 hover:text-[#f59d40] transition-colors">
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -68,12 +69,12 @@ const Footer: React.FC = () => {
             <ul className="space-y-2">
               {productLinks.map((item) => (
                 <li key={item}>
-                  <a 
-                    href={`/products/${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                  <Link 
+                    to={`/products/${item.toLowerCase().replace(/\s+/g, '-')}`} 
                     className="text-gray-600 hover:text-[#f59d40] transition-colors"
                   >
                     {formatDaisyText(item)}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

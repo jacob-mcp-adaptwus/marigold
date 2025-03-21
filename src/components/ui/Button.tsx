@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ interface ButtonProps {
   className?: string;
   withArrow?: boolean;
   onClick?: () => void;
+  external?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,6 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   withArrow = false,
   onClick,
+  external = false,
 }) => {
   // Add wiggle animation styles to the document head
   useEffect(() => {
@@ -75,10 +78,20 @@ const Button: React.FC<ButtonProps> = ({
   );
   
   if (href) {
+    // Use regular anchor tag for external links
+    if (external || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+      return (
+        <a href={href} className={classes} data-button-component target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
+          {content}
+        </a>
+      );
+    }
+    
+    // Use React Router's Link for internal navigation
     return (
-      <a href={href} className={classes} data-button-component>
+      <Link to={href} className={classes} data-button-component>
         {content}
-      </a>
+      </Link>
     );
   }
   
