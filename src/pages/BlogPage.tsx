@@ -8,6 +8,7 @@ import {
   User,
   Search
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface BlogPostProps {
   title: string;
@@ -37,19 +38,19 @@ const BlogPost: React.FC<BlogPostProps> = ({
         {image ? (
           <img src={image} alt={title} className="w-full h-full object-cover" />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <BookText className="h-16 w-16 text-[#2a2b2a]" />
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+            <span className="text-gray-400">No image</span>
           </div>
         )}
-        <div className="absolute top-0 right-0 m-2 px-2 py-1 rounded text-xs font-medium text-white bg-[#2a2b2a]">
+        <div className="absolute top-0 right-0 m-2 px-2 py-1 bg-[#f59d40] rounded text-xs font-medium text-white">
           {category}
         </div>
       </div>
       
       {/* Content Section */}
       <div className="p-5">
-        <h3 className="text-xl font-semibold text-[#2a2b2a] leading-tight mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{description}</p>
+        <h3 className="text-lg font-semibold text-[#2a2b2a] leading-tight mb-2">{title}</h3>
+        <p className="text-gray-500 text-sm mb-4 line-clamp-2">{description}</p>
         
         {/* Metadata */}
         <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
@@ -68,13 +69,13 @@ const BlogPost: React.FC<BlogPostProps> = ({
         </div>
         
         {/* Link */}
-        <a 
-          href={link}
+        <Link 
+          to={link}
           className="inline-flex items-center text-sm font-medium text-[#2a2b2a]"
         >
           Read Full Article
           <ArrowRight className="ml-1 h-4 w-4" />
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -210,47 +211,47 @@ const BlogPage: React.FC = () => {
           {/* Pagination */}
           <div className="mt-12 flex justify-center">
             <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-              <a
-                href="#"
+              <button
                 className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                onClick={() => {/* Handle previous page */}}
               >
                 <span className="sr-only">Previous</span>
                 <ArrowRight className="h-5 w-5 transform rotate-180" />
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
                 className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-[#2a2b2a] text-sm font-medium text-white"
+                onClick={() => {/* Handle page 1 */}}
               >
                 1
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
                 className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+                onClick={() => {/* Handle page 2 */}}
               >
                 2
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
                 className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+                onClick={() => {/* Handle page 3 */}}
               >
                 3
-              </a>
+              </button>
               <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
                 ...
               </span>
-              <a
-                href="#"
+              <button
                 className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+                onClick={() => {/* Handle page 8 */}}
               >
                 8
-              </a>
-              <a
-                href="#"
+              </button>
+              <button
                 className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                onClick={() => {/* Handle next page */}}
               >
                 <span className="sr-only">Next</span>
                 <ArrowRight className="h-5 w-5" />
-              </a>
+              </button>
             </nav>
           </div>
         </div>

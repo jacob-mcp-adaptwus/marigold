@@ -29,14 +29,18 @@ const CaseStudiesSection: React.FC = () => {
     {
       title: 'E-commerce Revenue Growth',
       company: 'RetailPlus',
+      industry: 'E-commerce',
       description: 'Implementation of dAisy Ad Management led to a 127% increase in ROAS and 45% growth in overall revenue.',
-      metrics: ['127% ROAS increase', '45% revenue growth', '68% reduction in ad spend waste']
+      metrics: ['127% ROAS increase', '45% revenue growth', '68% reduction in ad spend waste'],
+      link: '/case-studies/retailplus'
     },
     {
       title: 'Manufacturing Process Automation',
       company: 'IndusTech',
+      industry: 'Manufacturing',
       description: 'AI-powered automation solution reduced production costs by 32% while improving quality control metrics.',
-      metrics: ['32% cost reduction', '28% productivity increase', '62% fewer quality issues']
+      metrics: ['32% cost reduction', '28% productivity increase', '62% fewer quality issues'],
+      link: '/case-studies/industech'
     }
   ];
 
@@ -63,8 +67,10 @@ const CaseStudiesSection: React.FC = () => {
               key={index}
               title={study.title}
               company={study.company}
+              industry={study.industry}
               description={formatWithDaisy(study.description)}
               metrics={study.metrics}
+              link={study.link}
             />
           ))}
         </div>

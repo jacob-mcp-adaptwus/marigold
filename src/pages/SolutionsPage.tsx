@@ -12,6 +12,7 @@ import {
   Presentation,
   Layers 
 } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
 
 // Helper function to format DAIsy text with colors
 const ColoredDaisy = () => (
@@ -259,6 +260,34 @@ const SolutionsPage: React.FC = () => {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* Quick Links */}
+      <div className="flex flex-wrap gap-4 justify-center mb-12">
+        <HashLink 
+          smooth 
+          to="#daisy-ad-management" 
+          className="text-[#bb141a] font-medium inline-flex items-center hover:text-[#ea5830] transition-colors"
+        >
+          <ColoredDaisy /> Ad Management
+          <ArrowRight className="ml-1 h-4 w-4" />
+        </HashLink>
+        <HashLink 
+          smooth 
+          to="#one11-suite" 
+          className="text-[#2a2b2a] font-medium inline-flex items-center hover:text-[#f59d40] transition-colors"
+        >
+          One11 Suite
+          <ArrowRight className="ml-1 h-4 w-4" />
+        </HashLink>
+        <HashLink 
+          smooth 
+          to="#future-development" 
+          className="text-[#f59d40] font-medium inline-flex items-center hover:text-[#ea5830] transition-colors"
+        >
+          Future Development
+          <ArrowRight className="ml-1 h-4 w-4" />
+        </HashLink>
       </div>
 
       {/* Solutions Previews */}

@@ -10,7 +10,7 @@ import {
   Clock,
   User
 } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 interface ResourceCardProps {
   title: string;
@@ -79,14 +79,14 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
         </div>
         
         {/* Link */}
-        <a 
-          href={link}
+        <Link 
+          to={link}
           className="inline-flex items-center text-sm font-medium"
           style={{ color }}
         >
           Read More
           <ArrowRight className="ml-1 h-4 w-4" />
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -139,14 +139,14 @@ const ResourceSection: React.FC<ResourceSectionProps> = ({
         
         {/* CTA Button */}
         <div className="text-center">
-          <a
-            href={ctaLink}
+          <Link
+            to={ctaLink}
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
             style={{ backgroundColor: color, boxShadow: `0 4px 6px -1px ${color}20` }}
           >
             {ctaText}
             <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -315,9 +315,9 @@ const ResourcesPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {resourceSections.map((section, index) => (
-              <a 
+              <Link 
                 key={index}
-                href={`#${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+                to={`#${section.title.toLowerCase().replace(/\s+/g, '-')}`}
                 className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-300"
               >
                 <div className="p-5">
@@ -339,7 +339,7 @@ const ResourcesPage: React.FC = () => {
                   <span className="text-xs font-medium text-gray-500 uppercase">Explore</span>
                   <ArrowRight className="h-4 w-4 text-gray-400" />
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

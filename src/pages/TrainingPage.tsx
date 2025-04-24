@@ -9,6 +9,8 @@ import {
   Laptop,
   GraduationCap
 } from 'lucide-react';
+import { HashLink } from 'react-router-hash-link';
+import Button from '../components/ui/Button';
 
 interface TrainingCategoryProps {
   title: string;
@@ -222,39 +224,19 @@ const TrainingPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Navigation Cards */}
-      <div className="bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {trainingCategories.map((category, index) => (
-              <a 
-                key={index}
-                href={`#${category.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="p-5">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <div className="h-10 w-10 rounded-md flex items-center justify-center" style={{ color: category.color }}>
-                        {category.icon}
-                      </div>
-                    </div>
-                    <div className="ml-3">
-                      <h3 className="text-lg font-medium text-[#2a2b2a]">{category.title}</h3>
-                    </div>
-                  </div>
-                  <div className="mt-4 text-sm text-gray-500 line-clamp-2">
-                    {category.description}
-                  </div>
-                </div>
-                <div className="bg-gray-50 px-5 py-3 flex justify-between items-center">
-                  <span className="text-xs font-medium text-gray-500 uppercase">Learn more</span>
-                  <ArrowRight className="h-4 w-4 text-gray-400" />
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
+      {/* Category Navigation */}
+      <div className="flex flex-wrap gap-4 justify-center mb-12">
+        {trainingCategories.map((category, index) => (
+          <HashLink
+            key={index}
+            smooth
+            to={`#${category.title.toLowerCase().replace(/\s+/g, '-')}`}
+            className="text-[#2a2b2a] font-medium inline-flex items-center hover:text-[#f59d40] transition-colors"
+          >
+            {category.title}
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </HashLink>
+        ))}
       </div>
 
       {/* Training Categories */}

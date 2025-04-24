@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -16,6 +17,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   linkHref = '/pricing',
   linkText = 'View Pricing',
 }) => {
+  // Check if the link is internal or external
+  const isInternalLink = linkHref.startsWith('/');
+
   return (
     <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:translate-y-[-5px] border-t-4 border-transparent hover:border-[#f59d40] group">
       <div className="mb-4 bg-[#bb141a] bg-opacity-20 w-14 h-14 rounded-lg flex items-center justify-center group-hover:bg-[#bb141a] group-hover:text-white transition-all duration-300 relative overflow-hidden">
@@ -28,9 +32,25 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       </div>
       <h3 className="text-xl font-bold mb-2 text-[#2a2b2a]">{title}</h3>
       <p className="text-[#2a2b2a] mb-4 opacity-80">{description}</p>
-      <a href={linkHref} className="inline-flex items-center justify-center w-full text-[#bb141a] font-medium hover:text-[#ea5830] transition-colors">
-        {linkText} <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-      </a>
+      {isInternalLink ? (
+        <Link 
+          to={linkHref} 
+          className="inline-flex items-center justify-center w-full text-[#bb141a] font-medium hover:text-[#ea5830] transition-colors"
+        >
+          {linkText}
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      ) : (
+        <a 
+          href={linkHref}
+          className="inline-flex items-center justify-center w-full text-[#bb141a] font-medium hover:text-[#ea5830] transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {linkText}
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </a>
+      )}
     </div>
   );
 };

@@ -1,47 +1,80 @@
-import React, { ReactNode } from 'react';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CaseStudyCardProps {
   title: string;
+  description: string | React.ReactNode;
   company: string;
-  description: ReactNode;
+  industry: string;
   metrics: string[];
-  link?: string;
+  link: string;
+  image?: string;
 }
 
 const CaseStudyCard: React.FC<CaseStudyCardProps> = ({
   title,
-  company,
   description,
+  company,
+  industry,
   metrics,
-  link = '#',
+  link,
+  image
 }) => {
+  // Check if the link is internal or external
+  const isInternalLink = link.startsWith('/');
+
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-      <div className="p-6">
-        <div className="flex flex-col space-y-1 mb-4">
-          <span className="text-gray-500 text-sm font-medium">{company}</span>
-          <h3 className="text-xl font-bold">{title}</h3>
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition-all">
+      {/* Image Section */}
+      <div className="relative h-48 bg-gray-50">
+        {image ? (
+          <img src={image} alt={title} className="w-full h-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-gray-400">No image</span>
+          </div>
+        )}
+        <div className="absolute top-0 right-0 m-2 px-2 py-1 bg-[#f59d40] rounded text-xs font-medium text-white">
+          {industry}
         </div>
+      </div>
+      
+      {/* Content Section */}
+      <div className="p-5">
+        <h3 className="text-lg font-semibold text-[#2a2b2a] mb-2">{title}</h3>
+        <p className="text-gray-500 text-sm mb-4">{description}</p>
         
-        <p className="text-gray-600 mb-6">{description}</p>
+        {/* Metrics */}
+        <ul className="space-y-2 mb-4">
+          {metrics.map((metric, index) => (
+            <li key={index} className="flex items-start text-sm">
+              <span className="text-[#f59d40] mr-2">•</span>
+              <span className="text-gray-600">{metric}</span>
+            </li>
+          ))}
+        </ul>
         
-        <div className="border-t border-gray-100 pt-4 mb-4">
-          <h4 className="font-semibold text-sm text-gray-700 mb-3">Key Results</h4>
-          <ul className="space-y-2">
-            {metrics.map((metric, index) => (
-              <li key={index} className="flex items-start">
-                <CheckCircle2 className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-700">{metric}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        <a href={link} className="flex items-center text-amber-600 font-medium hover:text-amber-700 transition-colors duration-200">
-          Read case study
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </a>
+        {/* Link */}
+        {isInternalLink ? (
+          <Link 
+            to={link} 
+            className="flex items-center text-amber-600 font-medium hover:text-amber-700 transition-colors duration-200"
+          >
+            View Case Study
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        ) : (
+          <a 
+            href={link} 
+            className="flex items-center text-amber-600 font-medium hover:text-amber-700 transition-colors duration-200"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Case Study
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </a>
+        )}
       </div>
     </div>
   );
