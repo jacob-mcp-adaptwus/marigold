@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import { 
-  CheckCircle2, 
   ArrowRight, 
   BookText, 
   Video, 

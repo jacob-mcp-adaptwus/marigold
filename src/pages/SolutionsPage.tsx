@@ -5,12 +5,7 @@ import {
   ArrowRight, 
   Megaphone, 
   LayoutGrid, 
-  Clock, 
-  BarChart, 
-  BarChart2, 
-  BarChart3,
-  Presentation,
-  Layers 
+  Presentation
 } from 'lucide-react';
 import { HashLink } from 'react-router-hash-link';
 

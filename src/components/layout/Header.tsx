@@ -4,15 +4,6 @@ import { Link } from 'react-router-dom';
 import Logo from '../ui/Logo';
 import Button from '../ui/Button';
 
-// Helper function to format DAIsy text with colors
-const ColoredDaisy = () => (
-  <>
-    <span className="text-[#2a8735]">D</span>
-    <span className="text-[#f59d40]">AI</span>
-    <span className="text-[#2a8735]">sy</span>
-  </>
-);
-
 const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,17 +13,6 @@ const Header: React.FC = () => {
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   
-  // AI Services submenu items
-  const aiServicesItems = [
-    { 
-      name: 'dAisy Ad Management', 
-      displayName: (<><ColoredDaisy /> Ad Management</>),
-      href: '#daisy-ad-management' 
-    },
-    { name: 'One11 Suite', href: '#one11-suite' },
-    { name: 'Custom AI Applications', href: '#custom-ai' }
-  ];
-
   // Resources submenu items
   const resourcesItems = [
     { name: 'Blog', href: '/blog' },

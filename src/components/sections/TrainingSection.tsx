@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, BookOpen, ArrowRight, MapPin } from 'lucide-react';
+import { Calendar, Users, ArrowRight, MapPin } from 'lucide-react';
 
 interface TrainingCourse {
   title: string;

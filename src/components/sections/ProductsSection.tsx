@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Sparkles, Zap, CheckCircle2 } from 'lucide-react';
 import Button from '../ui/Button';
 
 const ProductsSection: React.FC = () => {
