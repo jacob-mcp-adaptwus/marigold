@@ -273,13 +273,13 @@ const ResourcesPage: React.FC = () => {
       ctaLink: "/blog"
     },
     {
-      title: "On Demand Webinars",
-      description: "Access our library of educational webinars featuring industry experts discussing strategies and best practices.",
+      title: "Webinars (Coming Soon)",
+      description: "Our educational webinars featuring industry experts discussing strategies and best practices will be available soon.",
       icon: <Video className="h-10 w-10" />,
       color: "#bb141a",
-      resources: webinarResources,
-      ctaText: "Browse All Webinars",
-      ctaLink: "/webinars"
+      resources: [],
+      ctaText: "Coming Soon",
+      ctaLink: "#"
     },
     {
       title: "GPTs",

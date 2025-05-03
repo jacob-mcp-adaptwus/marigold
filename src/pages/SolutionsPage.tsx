@@ -31,6 +31,11 @@ const formatWithDaisy = (text: string) => {
   return text;
 };
 
+// Handler for direct external navigation
+const handleExternalNavigation = (url: string) => {
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
+
 interface FeatureProps {
   title: string;
   description: string;
@@ -76,6 +81,39 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
   isReversed = false,
   id
 }) => {
+  // Special rendering for DAIsy section
+  const renderCTA = () => {
+    if (id === "daisy-ad-management") {
+      return (
+        <a 
+          href="https://daisydigital.io" 
+          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#bb141a] hover:bg-[#ea5830] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb141a]"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => {
+            e.preventDefault();
+            window.open('https://daisydigital.io', '_blank', 'noopener,noreferrer');
+          }}
+        >
+          {ctaText}
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </a>
+      );
+    }
+    
+    return (
+      <a
+        href={ctaHref}
+        className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#bb141a] hover:bg-[#ea5830] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb141a]"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {ctaText}
+        <ArrowRight className="ml-2 h-5 w-5" />
+      </a>
+    );
+  };
+
   return (
     <div id={id || (typeof title === 'string' ? title.toLowerCase().replace(/\s+/g, '-') : 'solution')} className="py-16 border-b border-gray-200 scroll-mt-20">
       <div className={`container mx-auto px-4 sm:px-6 lg:px-8 ${isReversed ? 'flex flex-col-reverse md:flex-row-reverse' : 'flex flex-col-reverse md:flex-row'} items-center gap-12`}>
@@ -101,13 +139,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({
               ))}
             </div>
             <div className="mt-8">
-              <a
-                href={ctaHref}
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-[#bb141a] hover:bg-[#ea5830] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#bb141a]"
-              >
-                {ctaText}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
+              {renderCTA()}
             </div>
           </div>
         </div>
@@ -162,7 +194,7 @@ const SolutionsPage: React.FC = () => {
       ],
       imageSrc: "/assets/images/daisy-dashboard.jpg",
       ctaText: "View Pricing",
-      ctaHref: "/daisy",
+      ctaHref: "//daisydigital.io",
       color: "#bb141a",
       id: "daisy-ad-management"
     },
@@ -255,34 +287,6 @@ const SolutionsPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Quick Links */}
-      <div className="flex flex-wrap gap-4 justify-center mb-12">
-        <HashLink 
-          smooth 
-          to="#daisy-ad-management" 
-          className="text-[#bb141a] font-medium inline-flex items-center hover:text-[#ea5830] transition-colors"
-        >
-          <ColoredDaisy /> Ad Management
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </HashLink>
-        <HashLink 
-          smooth 
-          to="#one11-suite" 
-          className="text-[#2a2b2a] font-medium inline-flex items-center hover:text-[#f59d40] transition-colors"
-        >
-          One11 Suite
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </HashLink>
-        <HashLink 
-          smooth 
-          to="#future-development" 
-          className="text-[#f59d40] font-medium inline-flex items-center hover:text-[#ea5830] transition-colors"
-        >
-          Future Development
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </HashLink>
       </div>
 
       {/* Solutions Previews */}

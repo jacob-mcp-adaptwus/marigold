@@ -107,17 +107,64 @@ const TrainingPage: React.FC = () => {
         "Inspiring stories and case studies that drive action"
       ],
       ctaText: "Book a Speaker",
-      ctaLink: "/training/speaking",
+      ctaLink: "/contact",
       image: (
         <div className="relative rounded-lg overflow-hidden w-full aspect-video">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#bb141a] to-[#ea5830] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#bb141a] to-[#ea5830] opacity-20"></div>
+          
+          {/* Animated microphone and sound waves */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <Mic className="h-20 w-20 text-[#bb141a]" />
+            <div className="relative">
+              <Mic className="h-28 w-28 text-[#bb141a] animate-pulse" />
+              {/* Sound wave animation */}
+              <div className="absolute -left-16 top-1/2 transform -translate-y-1/2">
+                <div className="flex space-x-2">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div 
+                      key={i} 
+                      className="w-2 rounded-full bg-[#bb141a] opacity-80"
+                      style={{ 
+                        height: `${i * 10}px`, 
+                        animation: `soundWave ${0.5 + i * 0.1}s ease-in-out infinite alternate` 
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+              <div className="absolute -right-16 top-1/2 transform -translate-y-1/2">
+                <div className="flex space-x-2">
+                  {[5, 4, 3, 2, 1].map((i) => (
+                    <div 
+                      key={i} 
+                      className="w-2 rounded-full bg-[#bb141a] opacity-80"
+                      style={{ 
+                        height: `${i * 10}px`, 
+                        animation: `soundWave ${0.5 + i * 0.1}s ease-in-out infinite alternate` 
+                      }}
+                    ></div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-90">
-            <h3 className="font-semibold text-lg text-[#2a2b2a]">Expert Speakers</h3>
-            <p className="text-sm text-gray-600">Transform your organization with powerful insights</p>
+          
+          {/* Animated text box */}
+          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-95 border-t-2 border-[#bb141a]">
+            <div className="flex items-center justify-center">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#bb141a] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#bb141a]"></span>
+              </span>
+            </div>
           </div>
+          
+          {/* Add a stylesheet for the sound wave animation */}
+          <style>{`
+            @keyframes soundWave {
+              0% { height: 5px; }
+              100% { height: 40px; }
+            }
+          `}</style>
         </div>
       )
     },
@@ -134,17 +181,154 @@ const TrainingPage: React.FC = () => {
         "Expert-led discussions on current industry trends"
       ],
       ctaText: "Explore Topics",
-      ctaLink: "/training/topical",
+      ctaLink: "/contact",
       image: (
         <div className="relative rounded-lg overflow-hidden w-full aspect-video">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#2a2b2a] to-[#555555] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#2a2b2a] to-[#555555] opacity-15"></div>
+          
+          {/* Open book with animated text */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <BookOpen className="h-20 w-20 text-[#2a2b2a]" />
+            {/* Book container */}
+            <div className="relative w-72 h-56 flex">
+              {/* Left page */}
+              <div className="w-1/2 h-full bg-white shadow-inner rounded-tl-md rounded-bl-md border-t border-l border-b border-gray-300 flex flex-col p-4 items-center">
+                <div className="w-full">
+                  {/* Text lines that appear one by one */}
+                  <div className="h-1.5 w-full bg-[#333] opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "0.3s" }}>
+                  </div>
+                  <div className="h-1.5 w-5/6 bg-[#333] mt-3 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "0.6s" }}>
+                  </div>
+                  <div className="h-1.5 w-full bg-[#333] mt-3 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "0.9s" }}>
+                  </div>
+                  
+                  <div className="h-1.5 w-3/4 bg-[#333] mt-6 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "1.2s" }}>
+                  </div>
+                  <div className="h-1.5 w-5/6 bg-[#333] mt-3 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "1.5s" }}>
+                  </div>
+                  <div className="h-1.5 w-full bg-[#333] mt-3 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "1.8s" }}>
+                  </div>
+                  <div className="h-1.5 w-4/5 bg-[#333] mt-3 opacity-0 rounded-sm" 
+                    style={{ animation: "fadeIn 0.5s ease-in-out forwards, pulse 3s ease-in-out infinite", animationDelay: "2.1s" }}>
+                  </div>
+                </div>
+                
+                {/* Page number */}
+                <div className="mt-auto text-sm text-gray-400">1</div>
+              </div>
+              
+              {/* Book spine/binding */}
+              <div className="w-4 h-full bg-gradient-to-r from-[#2a2b2a] to-[#444444] shadow-md flex flex-col justify-around items-center">
+                <div className="w-1 h-1 rounded-full bg-[#555555]"></div>
+                <div className="w-1 h-1 rounded-full bg-[#555555]"></div>
+                <div className="w-1 h-1 rounded-full bg-[#555555]"></div>
+              </div>
+              
+              {/* Right page */}
+              <div className="w-1/2 h-full bg-white shadow-inner rounded-tr-md rounded-br-md border-t border-r border-b border-gray-300 flex flex-col p-4 items-center">
+                <div className="w-full">
+                  {/* Animated highlighting effect */}
+                  <div className="relative w-full h-1.5 bg-[#333] opacity-70 rounded-sm">
+                    <div className="absolute inset-0 bg-[#2a2b2a] rounded-sm" 
+                      style={{ animation: "highlight 3s ease-in-out infinite" }}>
+                    </div>
+                  </div>
+                  <div className="relative w-5/6 h-1.5 bg-[#333] mt-3 opacity-70 rounded-sm">
+                    <div className="absolute inset-0 bg-[#2a2b2a] rounded-sm" 
+                      style={{ animation: "highlight 3s ease-in-out infinite", animationDelay: "0.5s" }}>
+                    </div>
+                  </div>
+                  <div className="relative w-full h-1.5 bg-[#333] mt-3 opacity-70 rounded-sm">
+                    <div className="absolute inset-0 bg-[#2a2b2a] rounded-sm" 
+                      style={{ animation: "highlight 3s ease-in-out infinite", animationDelay: "1s" }}>
+                    </div>
+                  </div>
+                  
+                  <div className="relative w-3/4 h-1.5 bg-[#333] mt-6 opacity-70 rounded-sm">
+                    <div className="absolute inset-0 bg-[#2a2b2a] rounded-sm" 
+                      style={{ animation: "highlight 3s ease-in-out infinite", animationDelay: "1.5s" }}>
+                    </div>
+                  </div>
+                  <div className="relative w-5/6 h-1.5 bg-[#333] mt-3 opacity-70 rounded-sm">
+                    <div className="absolute inset-0 bg-[#2a2b2a] rounded-sm" 
+                      style={{ animation: "highlight 3s ease-in-out infinite", animationDelay: "2s" }}>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Page number */}
+                <div className="mt-auto text-sm text-gray-400">2</div>
+              </div>
+              
+              {/* Animated page turning overlay */}
+              <div className="absolute top-0 right-0 w-36 h-full bg-white shadow-md"
+                style={{ 
+                  transformOrigin: "left center", 
+                  animation: "pageTurn 8s ease-in-out infinite",
+                  borderTopRightRadius: "3px",
+                  borderBottomRightRadius: "3px",
+                  zIndex: 5
+                }}>
+                <div className="w-full h-full flex flex-col p-4">
+                  <div className="w-full">
+                    <div className="h-1.5 w-5/6 bg-[#333] opacity-50 rounded-sm"></div>
+                    <div className="h-1.5 w-full bg-[#333] mt-3 opacity-50 rounded-sm"></div>
+                    <div className="h-1.5 w-3/4 bg-[#333] mt-3 opacity-50 rounded-sm"></div>
+                    <div className="h-1.5 w-5/6 bg-[#333] mt-6 opacity-50 rounded-sm"></div>
+                    <div className="h-1.5 w-2/3 bg-[#333] mt-3 opacity-50 rounded-sm"></div>
+                  </div>
+                  <div className="mt-auto self-end text-sm text-gray-400">3</div>
+                </div>
+              </div>
+              
+              {/* Book icon */}
+              <div className="absolute -bottom-2 -right-2 p-1 bg-[#2a2b2a] rounded-full z-10">
+                <BookOpen className="h-7 w-7 text-white animate-pulse" />
+              </div>
+            </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-90">
-            <h3 className="font-semibold text-lg text-[#2a2b2a]">Specialized Topics</h3>
-            <p className="text-sm text-gray-600">Deep dives into subject matter expertise</p>
+          
+          {/* Animated text box */}
+          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-95 border-t-2 border-[#2a2b2a]">
+            <div className="flex items-center justify-center">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2a2b2a] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#2a2b2a]"></span>
+              </span>
+            </div>
           </div>
+          
+          {/* Animations */}
+          <style>{`
+            @keyframes fadeIn {
+              0% { opacity: 0; }
+              100% { opacity: 0.7; }
+            }
+            
+            @keyframes highlight {
+              0%, 100% { transform: scaleX(0); transform-origin: left; }
+              50%, 55% { transform: scaleX(1); transform-origin: left; }
+              56%, 100% { transform: scaleX(0); transform-origin: right; }
+            }
+            
+            @keyframes pageTurn {
+              0%, 30% { transform: rotateY(0deg); opacity: 0; }
+              35% { opacity: 1; }
+              45%, 55% { transform: rotateY(-180deg); opacity: 1; }
+              60% { opacity: 0; }
+              100% { transform: rotateY(-180deg); opacity: 0; }
+            }
+            
+            @keyframes pulse {
+              0%, 100% { opacity: 0.7; }
+              50% { opacity: 0.5; }
+            }
+          `}</style>
         </div>
       )
     },
@@ -161,20 +345,113 @@ const TrainingPage: React.FC = () => {
         "Consistent quality regardless of delivery method"
       ],
       ctaText: "Schedule Training",
-      ctaLink: "/training/delivery",
+      ctaLink: "/contact",
       image: (
         <div className="relative rounded-lg overflow-hidden w-full aspect-video">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#f59d40] to-[#f8cb9c] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#f59d40] to-[#f8cb9c] opacity-15"></div>
+          
+          {/* Flexible delivery animation */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex space-x-4">
-              <Users className="h-16 w-16 text-[#f59d40]" />
-              <Laptop className="h-16 w-16 text-[#f59d40]" />
+            <div className="relative">
+              {/* Virtual/Remote Scene */}
+              <div className="absolute -left-28 top-0 flex flex-col items-center transition-all duration-1000"
+                style={{ animation: "floatIn 4s ease-in-out infinite alternate" }}>
+                {/* Laptop */}
+                <div className="relative w-28 h-20 bg-[#444] rounded-md flex items-center justify-center shadow-lg mb-2">
+                  {/* Screen */}
+                  <div className="w-24 h-16 bg-[#f8f8f8] rounded-sm overflow-hidden">
+                    {/* Virtual people on screen */}
+                    <div className="flex flex-wrap justify-center p-1 gap-1">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div key={i} className="w-4 h-4 rounded-full bg-[#f59d40]" 
+                          style={{ 
+                            opacity: 0.8,
+                            animation: `pulse ${0.8 + i * 0.2}s ease-in-out infinite alternate`,
+                            animationDelay: `${i * 0.1}s`
+                          }} 
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <Laptop className="h-7 w-7 text-[#f59d40] animate-pulse" />
+              </div>
+              
+              {/* In-Person Scene */}
+              <div className="absolute -right-28 top-0 flex flex-col items-center"
+                style={{ animation: "floatIn 4s ease-in-out infinite alternate-reverse" }}>
+                {/* Meeting table */}
+                <div className="relative w-32 h-16 bg-[#f5f5f5] rounded-lg shadow-lg mb-2 flex items-center justify-center">
+                  {/* People around table */}
+                  <div className="absolute" style={{ animation: "spin 20s linear infinite" }}>
+                    {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+                      <div 
+                        key={i} 
+                        className="absolute w-5 h-5 rounded-full bg-[#f59d40] -translate-x-1/2 -translate-y-1/2 border border-white"
+                        style={{ 
+                          transform: `rotate(${angle}deg) translate(14px) rotate(-${angle}deg)`,
+                          opacity: 0.8
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <Users className="h-7 w-7 text-[#f59d40] animate-pulse" />
+              </div>
+              
+              {/* Central connector animation */}
+              <div className="relative">
+                <div className="w-16 h-16 rounded-full bg-[#f59d40] bg-opacity-20 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-[#f59d40] bg-opacity-30 flex items-center justify-center animate-pulse">
+                    <div className="w-8 h-8 rounded-full bg-[#f59d40] bg-opacity-50 flex items-center justify-center">
+                      {/* Connecting lines */}
+                      <div className="absolute w-60 h-2 flex items-center justify-center">
+                        <div className="h-0.5 bg-[#f59d40] transition-all duration-700"
+                          style={{ 
+                            width: "100%",
+                            animation: "expandLine 2s ease-in-out infinite alternate" 
+                          }}>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-90">
-            <h3 className="font-semibold text-lg text-[#2a2b2a]">Flexible Delivery</h3>
-            <p className="text-sm text-gray-600">Training that fits your team's structure</p>
+          
+          {/* Animated text box */}
+          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-95 border-t-2 border-[#f59d40]">
+            <div className="flex items-center justify-center">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f59d40] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#f59d40]"></span>
+              </span>
+            </div>
           </div>
+          
+          {/* Animations */}
+          <style>{`
+            @keyframes floatIn {
+              0% { transform: translateX(0px); }
+              100% { transform: translateX(20px); }
+            }
+            
+            @keyframes expandLine {
+              0% { transform: scaleX(0.5); opacity: 0.3; }
+              100% { transform: scaleX(1); opacity: 0.7; }
+            }
+            
+            @keyframes pulse {
+              0% { transform: scale(0.8); }
+              100% { transform: scale(1); }
+            }
+            
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
         </div>
       )
     },
@@ -190,18 +467,70 @@ const TrainingPage: React.FC = () => {
         "Certification and badge system for achievements",
         "Customizable learning journeys for your organization"
       ],
-      ctaText: "Explore LMS",
-      ctaLink: "/training/lms",
+      ctaText: "Coming Soon",
+      ctaLink: "#",
       image: (
         <div className="relative rounded-lg overflow-hidden w-full aspect-video">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#627c42] to-[#8ea772] opacity-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#627c42] to-[#8ea772] opacity-15"></div>
+          
+          {/* Simplified learning animation */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <GraduationCap className="h-20 w-20 text-[#627c42]" />
+            <div className="relative">
+              {/* Simple graduation cap with subtle animation */}
+              <div className="relative w-40 h-40 flex items-center justify-center">
+                <div className="relative">
+                  {/* Graduation cap with subtle float animation */}
+                  <div className="relative"
+                    style={{ animation: "float 3s ease-in-out infinite alternate" }}>
+                    <GraduationCap className="h-24 w-24 text-[#627c42]" />
+                  </div>
+                  
+                  {/* Simple circular progress indicator */}
+                  <div className="absolute -inset-4 rounded-full border-4 border-[#627c42] border-opacity-25"
+                    style={{ animation: "pulse 4s ease-in-out infinite" }}>
+                    <div className="absolute top-0 bottom-0 left-0 right-0 rounded-full border-t-4 border-l-4 border-[#627c42]"
+                      style={{ animation: "spin 5s linear infinite" }}>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Simple book underneath */}
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+                <div className="w-24 h-6 bg-[#7d9c58] rounded-sm flex items-center justify-center shadow-md">
+                  <div className="w-20 h-4 bg-white rounded-sm opacity-70"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-90">
-            <h3 className="font-semibold text-lg text-[#2a2b2a]">Learning Platform</h3>
-            <p className="text-sm text-gray-600">Continuous education at your fingertips</p>
+          
+          {/* Animated text box */}
+          <div className="absolute bottom-0 left-0 right-0 py-4 px-6 bg-white bg-opacity-95 border-t-2 border-[#627c42]">
+            <div className="flex items-center justify-center">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#627c42] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#627c42]"></span>
+              </span>
+            </div>
           </div>
+          
+          {/* Simplified animations */}
+          <style>{`
+            @keyframes float {
+              0% { transform: translateY(0px); }
+              100% { transform: translateY(-6px); }
+            }
+            
+            @keyframes pulse {
+              0%, 100% { transform: scale(1); opacity: 0.25; }
+              50% { transform: scale(1.05); opacity: 0.5; }
+            }
+            
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
         </div>
       )
     }
@@ -221,21 +550,6 @@ const TrainingPage: React.FC = () => {
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Category Navigation */}
-      <div className="flex flex-wrap gap-4 justify-center mb-12">
-        {trainingCategories.map((category, index) => (
-          <HashLink
-            key={index}
-            smooth
-            to={`#${category.title.toLowerCase().replace(/\s+/g, '-')}`}
-            className="text-[#2a2b2a] font-medium inline-flex items-center hover:text-[#f59d40] transition-colors"
-          >
-            {category.title}
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </HashLink>
-        ))}
       </div>
 
       {/* Training Categories */}

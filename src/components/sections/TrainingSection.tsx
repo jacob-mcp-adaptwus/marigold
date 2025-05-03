@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Users, ArrowRight, MapPin } from 'lucide-react';
+import { Calendar, Users, ArrowRight, MapPin, Network, BrainCircuit, Coffee, Lightbulb, Users2 } from 'lucide-react';
 
 interface TrainingCourse {
   title: string;
@@ -14,31 +14,22 @@ interface TrainingCourse {
 const TrainingSection: React.FC = () => {
   const courses: TrainingCourse[] = [
     {
-      title: "AI Omaha Event",
-      description: "Join us for a special event in Omaha focused on AI innovation, networking with industry leaders, and hands-on workshops.",
-      icon: <MapPin className="h-6 w-6 text-[#bb141a]" />,
-      date: "Next Event: March 15, 2024",
-      duration: "2 Days",
+      title: "AI Omaha Meetup",
+      description: "Join us for a casual networking event with AI professionals and enthusiasts. Share ideas, make connections, and learn about the latest AI trends.",
+      icon: <BrainCircuit className="h-6 w-6 text-[#bb141a]" />,
+      date: "Next Event: June 5, 2024",
+      duration: "2 Hours",
       level: "All Levels",
-      link: "/training/ai-omaha"
+      link: "https://www.meetup.com/ai_omaha/"
     },
     {
-      title: "AI Marketing Mastery",
-      description: "Learn how to leverage AI tools to create data-driven marketing campaigns that deliver measurable results.",
-      icon: <Calendar className="h-6 w-6 text-[#bb141a]" />,
-      date: "Next Session: October 15, 2023",
-      duration: "4 Weeks",
-      level: "Intermediate",
-      link: "/training/ai-marketing"
-    },
-    {
-      title: "Digital Transformation Workshop",
-      description: "A comprehensive workshop for business leaders on implementing AI solutions across your organization.",
-      icon: <Users className="h-6 w-6 text-[#bb141a]" />,
-      date: "Next Session: November 2, 2023",
-      duration: "2 Days",
-      level: "Advanced",
-      link: "/training/digital-transformation"
+      title: "Lunch and Learn",
+      description: "Event hosted by Elevator downtown, a co-warehousing community. Join us for an informative session with lunch and fellow AI enthusiasts and professionals.",
+      icon: <Coffee className="h-6 w-6 text-[#bb141a]" />,
+      date: "Next Event: June 10, 2024",
+      duration: "1 Hour",
+      level: "All Levels",
+      link: "https://www.elevatorspaces.com/events"
     }
   ];
 
@@ -95,17 +86,17 @@ const TrainingSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-[#2a2b2a]">
-            Learn, Grow, and <span className="text-[#bb141a]">Connect</span> with AI
+            Connect with the <span className="text-[#bb141a]">AI Community</span>
           </h2>
           <p className="text-[#2a2b2a] max-w-3xl mx-auto text-lg md:text-xl">
-            Develop your team's AI skills with our specialized training programs<br />
-            designed for modern business challenges
+            Join local AI enthusiasts, share insights, and explore the latest trends<br />
+            through our community events and meetups
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {courses.map((course, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 relative overflow-hidden">
+            <div key={index} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 relative overflow-hidden flex flex-col h-full">
               <div className="absolute top-0 right-0 w-24 h-24 opacity-[0.03]" style={{
                 background: 'radial-gradient(circle at top right, #bb141a, transparent 70%)'
               }}></div>
@@ -117,9 +108,9 @@ const TrainingSection: React.FC = () => {
                 <h3 className="text-xl font-bold text-[#2a2b2a]">{course.title}</h3>
               </div>
               
-              <p className="text-gray-600 mb-6">{course.description}</p>
+              <p className="text-gray-600 mb-6 h-24">{course.description}</p>
               
-              <div className="border-t border-gray-100 pt-4 mb-4">
+              <div className="border-t border-gray-100 pt-4 mb-4 mt-auto">
                 <div className="flex flex-col space-y-2 text-sm">
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500">Date:</span>
@@ -146,12 +137,13 @@ const TrainingSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="text-center mt-12">
+        {/* Hidden for now - will add real events later */}
+        <div className="text-center mt-12 hidden">
           <a 
-            href="/training" 
+            href="/events/ai-omaha" 
             className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-[#bb141a] text-white font-medium hover:bg-[#ea5830] transition-colors hover:scale-105 transform transition-transform duration-300"
           >
-            View All Training Programs <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" />
+            View All AI Omaha Events <ArrowRight className="ml-2 h-4 w-4 animate-wiggle" />
           </a>
           
           {/* Add wiggle animation */}
