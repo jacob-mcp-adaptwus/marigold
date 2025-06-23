@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../components/layout/Layout';
-import { CheckCircle2, ArrowRight, Code, Users, TrendingUp, Shield, Brain, BrainCircuit, Network, Bot, Laptop, Layers } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { CheckCircle2, ArrowRight, Shield, Brain, BrainCircuit, Network } from 'lucide-react';
 import Button from '../components/ui/Button';
 
 interface ServiceCardProps {

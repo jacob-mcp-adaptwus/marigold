@@ -7,7 +7,6 @@ import {
   LayoutGrid, 
   Presentation
 } from 'lucide-react';
-import { HashLink } from 'react-router-hash-link';
 
 // Helper function to format DAIsy text with colors
 const ColoredDaisy = () => (
@@ -29,11 +28,6 @@ const formatWithDaisy = (text: string) => {
     );
   }
   return text;
-};
-
-// Handler for direct external navigation
-const handleExternalNavigation = (url: string) => {
-  window.open(url, '_blank', 'noopener,noreferrer');
 };
 
 interface FeatureProps {

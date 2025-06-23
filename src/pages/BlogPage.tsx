@@ -1,146 +1,56 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
+import BlogTemplate from '../components/blog/BlogTemplate';
+import { blogPosts, getCategories, filterPostsByCategory, searchPosts, BlogPost } from '../data/blogPosts';
 import { 
   ArrowRight, 
-  Calendar,
-  Clock,
-  User,
   Search
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
-
-interface BlogPostProps {
-  title: string;
-  description: string;
-  date: string;
-  author: string;
-  readTime: string;
-  category: string;
-  image?: string;
-  link: string;
-}
-
-const BlogPost: React.FC<BlogPostProps> = ({
-  title,
-  description,
-  date,
-  author,
-  readTime,
-  category,
-  image,
-  link
-}) => {
-  return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden transition-all hover:shadow-xl border border-gray-100">
-      {/* Image Section */}
-      <div className="relative h-48 bg-gray-50 overflow-hidden">
-        {image ? (
-          <img src={image} alt={title} className="w-full h-full object-cover" />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-            <span className="text-gray-400">No image</span>
-          </div>
-        )}
-        <div className="absolute top-0 right-0 m-2 px-2 py-1 bg-[#f59d40] rounded text-xs font-medium text-white">
-          {category}
-        </div>
-      </div>
-      
-      {/* Content Section */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-[#2a2b2a] leading-tight mb-2">{title}</h3>
-        <p className="text-gray-500 text-sm mb-4 line-clamp-2">{description}</p>
-        
-        {/* Metadata */}
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-          <div className="flex items-center">
-            <Calendar className="h-3 w-3 mr-1" />
-            <span>{date}</span>
-          </div>
-          <div className="flex items-center">
-            <User className="h-3 w-3 mr-1" />
-            <span>{author}</span>
-          </div>
-          <div className="flex items-center">
-            <Clock className="h-3 w-3 mr-1" />
-            <span>{readTime}</span>
-          </div>
-        </div>
-        
-        {/* Link */}
-        <Link 
-          to={link}
-          className="inline-flex items-center text-sm font-medium text-[#2a2b2a]"
-        >
-          Read Full Article
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </Link>
-      </div>
-    </div>
-  );
-};
 
 const BlogPage: React.FC = () => {
-  // Sample blog posts data
-  const blogPosts: BlogPostProps[] = [
-    {
-      title: "Leveraging AI to Transform Your Marketing Strategy",
-      description: "Learn how AI-powered solutions can revolutionize your marketing efforts and drive better results. This comprehensive guide explores practical applications of artificial intelligence in modern marketing campaigns, showing real-world examples of successful implementations and strategies you can adopt today.",
-      date: "Mar 10, 2025",
-      author: "Sarah Johnson",
-      readTime: "5 min read",
-      category: "AI Marketing",
-      link: "/blog/ai-marketing-strategy"
-    },
-    {
-      title: "The Future of Customer Engagement with AI",
-      description: "Discover how artificial intelligence is reshaping the way businesses connect with their customers. From personalized experiences to automated interactions that feel human, we explore the cutting-edge technologies that are setting new standards for customer engagement in the digital age.",
-      date: "Feb 28, 2025",
-      author: "Michael Chen",
-      readTime: "8 min read",
-      category: "Customer Experience",
-      link: "/blog/future-customer-engagement"
-    },
-    {
-      title: "5 Ways to Optimize Your Ad Campaigns with dAisy",
-      description: "Practical tips for getting the most out of your advertising budget using our AI-powered platform. Learn how to leverage data-driven insights, automated optimization, and machine learning to create more effective campaigns that deliver measurable results and higher ROI.",
-      date: "Feb 15, 2025",
-      author: "Alex Rivera",
-      readTime: "6 min read",
-      category: "Advertising",
-      link: "/blog/optimize-ad-campaigns"
-    },
-    {
-      title: "The Role of AI in Content Creation",
-      description: "How artificial intelligence is helping marketers create more effective content at scale. Explore the tools and techniques that are transforming content marketing, from AI-generated copy to intelligent content curation and personalization strategies.",
-      date: "Feb 05, 2025",
-      author: "Emily Zhang",
-      readTime: "7 min read",
-      category: "Content Marketing",
-      link: "/blog/ai-content-creation"
-    },
-    {
-      title: "Understanding Audience Behavior Through AI Analytics",
-      description: "Deep dive into how AI analytics tools can help you gain unprecedented insights into your audience's behaviors and preferences. Learn how to use these insights to craft more targeted campaigns and marketing strategies that resonate with your ideal customers.",
-      date: "Jan 22, 2025",
-      author: "James Wilson",
-      readTime: "10 min read",
-      category: "Data Analytics",
-      link: "/blog/ai-audience-analytics"
-    },
-    {
-      title: "The Ethics of AI in Marketing: Finding the Balance",
-      description: "Exploring the ethical considerations and best practices for implementing AI in your marketing strategy responsibly. This thought-provoking piece examines privacy concerns, transparency issues, and how to maintain authentic customer relationships in an age of automation.",
-      date: "Jan 15, 2025",
-      author: "Dr. Lisa Patel",
-      readTime: "12 min read",
-      category: "AI Ethics",
-      link: "/blog/ethics-ai-marketing"
-    }
-  ];
+  const [posts, setPosts] = useState<BlogPost[]>(blogPosts);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 9;
 
-  // Categories for filter
-  const categories = ["All", "AI Marketing", "Customer Experience", "Advertising", "Content Marketing", "Data Analytics", "AI Ethics"];
+  const categories = getCategories();
+  
+  // Filter posts based on search and category
+  useEffect(() => {
+    let filteredPosts = blogPosts;
+    
+    // Apply category filter
+    if (selectedCategory !== 'All') {
+      filteredPosts = filterPostsByCategory(selectedCategory);
+    }
+    
+    // Apply search filter
+    if (searchTerm.trim()) {
+      filteredPosts = searchPosts(searchTerm);
+    }
+    
+    setPosts(filteredPosts);
+    setCurrentPage(1); // Reset to first page when filters change
+  }, [searchTerm, selectedCategory]);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const currentPosts = posts.slice(startIndex, endIndex);
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <Layout>
@@ -160,7 +70,7 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
       </div>
-
+      
       {/* Search and Filter Section */}
       <div className="bg-white py-8 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -173,19 +83,22 @@ const BlogPage: React.FC = () => {
                 </div>
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
                   className="focus:ring-[#f59d40] focus:border-[#f59d40] block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2"
                   placeholder="Search articles..."
                 />
               </div>
             </div>
-            
+
             {/* Categories */}
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category, index) => (
                 <button
                   key={index}
+                  onClick={() => handleCategoryChange(category)}
                   className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-                    index === 0 
+                    selectedCategory === category
                       ? 'bg-[#2a2b2a] text-white' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
@@ -201,58 +114,92 @@ const BlogPage: React.FC = () => {
       {/* Blog Posts Grid */}
       <div className="bg-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <BlogPost key={index} {...post} />
-            ))}
+          {/* Results count */}
+          <div className="mb-8 text-center">
+            <p className="text-gray-600">
+              Showing {currentPosts.length} of {posts.length} articles
+              {searchTerm && ` for "${searchTerm}"`}
+              {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+            </p>
           </div>
-          
+
+          {/* Posts Grid */}
+          {currentPosts.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-gray-500 text-lg">No blog posts found</div>
+              <p className="text-gray-400 mt-2">Try adjusting your search or filters</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentPosts.map((post) => (
+                <BlogTemplate
+                  key={post.id}
+                  post={post}
+                  showActions={false}
+                />
+              ))}
+            </div>
+          )}
+
           {/* Pagination */}
-          <div className="mt-12 flex justify-center">
-            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-              <button
-                className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                onClick={() => {/* Handle previous page */}}
-              >
-                <span className="sr-only">Previous</span>
-                <ArrowRight className="h-5 w-5 transform rotate-180" />
-              </button>
-              <button
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-[#2a2b2a] text-sm font-medium text-white"
-                onClick={() => {/* Handle page 1 */}}
-              >
-                1
-              </button>
-              <button
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-                onClick={() => {/* Handle page 2 */}}
-              >
-                2
-              </button>
-              <button
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-                onClick={() => {/* Handle page 3 */}}
-              >
-                3
-              </button>
-              <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                ...
-              </span>
-              <button
-                className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
-                onClick={() => {/* Handle page 8 */}}
-              >
-                8
-              </button>
-              <button
-                className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                onClick={() => {/* Handle next page */}}
-              >
-                <span className="sr-only">Next</span>
-                <ArrowRight className="h-5 w-5" />
-              </button>
-            </nav>
-          </div>
+          {totalPages > 1 && (
+            <div className="mt-12 flex justify-center">
+              <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <button
+                  className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <span className="sr-only">Previous</span>
+                  <ArrowRight className="h-5 w-5 transform rotate-180" />
+                </button>
+                
+                {/* Page numbers */}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // Show first page, last page, current page, and pages around current
+                  const shouldShow = 
+                    page === 1 || 
+                    page === totalPages || 
+                    Math.abs(page - currentPage) <= 1;
+                  
+                  if (!shouldShow) {
+                    // Show ellipsis
+                    if (page === 2 || page === totalPages - 1) {
+                      return (
+                        <span key={page} className="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
+                          ...
+                        </span>
+                      );
+                    }
+                    return null;
+                  }
+                  
+                  return (
+                    <button
+                      key={page}
+                      className={`relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium ${
+                        currentPage === page
+                          ? 'bg-[#2a2b2a] text-white'
+                          : 'bg-white text-gray-700 hover:bg-gray-50'
+                      }`}
+                      onClick={() => handlePageChange(page)}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+                
+                <button
+                  className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  <span className="sr-only">Next</span>
+                  <ArrowRight className="h-5 w-5" />
+                </button>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

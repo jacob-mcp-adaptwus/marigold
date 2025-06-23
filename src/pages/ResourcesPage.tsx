@@ -10,6 +10,7 @@ import {
   User
 } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
+import { blogPosts, getRecentPosts } from '../data/blogPosts';
 
 interface ResourceCardProps {
   title: string;
@@ -51,40 +52,37 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
       </div>
       
       {/* Content Section */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-[#2a2b2a] leading-tight mb-2">{title}</h3>
-        <p className="text-gray-500 text-sm mb-4 line-clamp-2">{description}</p>
-        
-        {/* Metadata */}
-        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-          {date && (
-            <div className="flex items-center">
-              <Calendar className="h-3 w-3 mr-1" />
-              <span>{date}</span>
-            </div>
-          )}
+      <div className="p-6">
+        <div className="flex items-center text-sm text-gray-500 mb-2">
+          {date && <span>{date}</span>}
           {author && (
-            <div className="flex items-center">
-              <User className="h-3 w-3 mr-1" />
+            <>
+              <span className="mx-2">•</span>
               <span>{author}</span>
-            </div>
+            </>
           )}
           {readTime && (
-            <div className="flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
+            <>
+              <span className="mx-2">•</span>
               <span>{readTime}</span>
-            </div>
+            </>
           )}
         </div>
         
-        {/* Link */}
-        <Link 
+        <h3 className="text-xl font-bold text-[#2a2b2a] mb-3 line-clamp-2">
+          {title}
+        </h3>
+        
+        <p className="text-gray-600 mb-4 line-clamp-3">
+          {description}
+        </p>
+        
+        <Link
           to={link}
-          className="inline-flex items-center text-sm font-medium"
-          style={{ color }}
+          className="inline-flex items-center text-[#f59d40] font-semibold hover:text-[#e88a2e] transition-colors"
         >
           Read More
-          <ArrowRight className="ml-1 h-4 w-4" />
+          <ArrowRight className="h-4 w-4 ml-2" />
         </Link>
       </div>
     </div>
@@ -169,39 +167,20 @@ const ResourcesPage: React.FC = () => {
     }
   }, [location]);
 
-  // Blog resources
-  const blogResources: ResourceCardProps[] = [
-    {
-      title: "Leveraging AI to Transform Your Marketing Strategy",
-      description: "Learn how AI-powered solutions can revolutionize your marketing efforts and drive better results.",
-      date: "Mar 10, 2025",
-      author: "Sarah Johnson",
-      readTime: "5 min read",
-      category: "Blog",
-      link: "/blog",
-      color: "#2a2b2a"
-    },
-    {
-      title: "The Future of Customer Engagement with AI",
-      description: "Discover how artificial intelligence is reshaping the way businesses connect with their customers.",
-      date: "Feb 28, 2025",
-      author: "Michael Chen",
-      readTime: "8 min read",
-      category: "Blog",
-      link: "/blog",
-      color: "#2a2b2a"
-    },
-    {
-      title: "5 Ways to Optimize Your Ad Campaigns with dAisy",
-      description: "Practical tips for getting the most out of your advertising budget using our AI-powered platform.",
-      date: "Feb 15, 2025",
-      author: "Alex Rivera",
-      readTime: "6 min read",
-      category: "Blog",
-      link: "/blog",
-      color: "#2a2b2a"
-    },
-  ];
+  // Get recent blog posts for the resources page
+  const recentBlogPosts = getRecentPosts(3);
+  
+  // Convert blog posts to resource format
+  const blogResources: ResourceCardProps[] = recentBlogPosts.map(post => ({
+    title: post.title,
+    description: post.description,
+    date: post.date,
+    author: post.author,
+    readTime: post.readTime,
+    category: "Blog",
+    link: post.link,
+    color: "#2a2b2a"
+  }));
 
   // Webinar resources
   const webinarResources: ResourceCardProps[] = [
